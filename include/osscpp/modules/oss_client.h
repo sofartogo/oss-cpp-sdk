@@ -607,6 +607,7 @@ class Client {
 		 * @param bucket_name [in] 要上传到的Bucket名称
 		 * @param key [in] 要上传到服务器上显示的Object的名称
 		 * @param buffer [in] 要上传数据的缓存区
+		 * @param buffer_len [in] 要上传数据的长度
 		 * @param metadata [in] 标识数据的一些元信息，一个ObjectMetadata对象
 		 * @param retcode [out] 服务器返回的HTTP返回码
 		 * @return 返回一个PutObjectResult对象
