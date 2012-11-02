@@ -1,0 +1,1366 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>OSSCPP: OSSCPP API 使用示例</title>
+
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">OSSCPP
+   &#160;<span id="projectnumber">0.1.0</span>
+   </div>
+   <div id="projectbrief">Aliyun Open Storage Service C++ SDK</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- 制作者 Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>首页</span></a></li>
+      <li><a href="../../modules.html"><span>模块</span></a></li>
+      <li><a href="../../namespaces.html"><span>命名空间</span></a></li>
+      <li><a href="../../annotated.html"><span>类</span></a></li>
+      <li><a href="../../files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('de/dce/_o_s_s_c_p_p__a_p_i__e_x_a_m_p_l_e.html','../../');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">OSSCPP API 使用示例 </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><dl class="attention"><dt><b>注意:</b></dt><dd>最新示例代码位于 example 目录中，如果需要测试示例代码， 请编译example中的例子（亲，默认已经编译好了，你可以直接去 build/example 的各个子目录中找到可执行文件啦:-)）</dd></dl>
+<h2><a class="anchor" id="Bucket操作"></a>
+Bucket操作</h2>
+<h3><a class="anchor" id="创建Bucket"></a>
+创建Bucket</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;<a class="code" href="../../d8/de1/client_8h.html">osscpp/client.h</a>&gt;</span>
+<span class="preprocessor"> #include &lt;iostream&gt;</span>
+<span class="preprocessor"> #include &lt;string&gt;</span>
+ 
+ <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>osscpp;
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_id  = <span class="stringliteral">&quot;ACSfLOiddaOzejOP&quot;</span>; <span class="comment">//设置用户 Access ID </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_key = <span class="stringliteral">&quot;MUltNpuYqE&quot;</span>; <span class="comment">// 设置用户的 Access Key </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="keywordtype">int</span> main()
+ {
+        <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+ 
+        <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> client(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">string</span> bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;       <span class="comment">//设置bucket_name</span>
+ 
+        client.CreateBucket(bucket_name, retcode);
+        <span class="keywordflow">if</span>(retcode == 0) {
+                cout &lt;&lt; <span class="stringliteral">&quot;create bucket successfully.&quot;</span> &lt;&lt; endl;
+        } <span class="keywordflow">else</span> {
+                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+        }
+ 
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div> <h3><a class="anchor" id="获取Bucket的ACL信息"></a>
+获取Bucket的ACL信息</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;<a class="code" href="../../d8/de1/client_8h.html">osscpp/client.h</a>&gt;</span>
+<span class="preprocessor"> #include &lt;iostream&gt;</span>
+<span class="preprocessor"> #include &lt;string&gt;</span>
+ 
+ <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>osscpp;
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_id = <span class="stringliteral">&quot;ACSfLOiddaOzejOP&quot;</span>;   <span class="comment">//设置用户帐号</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_key = <span class="stringliteral">&quot;MUltNpuYqE&quot;</span>;  <span class="comment">//设置用户密码</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> endpoint = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置hostname</span>
+ 
+ <span class="keywordtype">int</span> main()
+ {
+        <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> retcode;                 <span class="comment">//保存服务器http返回码的解析结果</span>
+ 
+        <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> client(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">string</span> bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;    <span class="comment">//设置bucket_name</span>
+ 
+        <a class="code" href="../../d8/d38/classosscpp_1_1_access_control_list.html" title="表示OSS的访问控制列表（Access Control List, ACL), 包含了一组为指定被授权者(Grantee)分配特定权限(Permission)的集合">AccessControlList</a> acl;
+        acl = client.GetBucketAcl(bucket_name, retcode);
+        Owner owner;
+        cout &lt;&lt; <span class="stringliteral">&quot;get_bucket_acl result:&quot;</span> &lt;&lt; endl &lt;&lt; endl;
+        <span class="keywordflow">if</span>(retcode == 0) {
+                cout &lt;&lt; <span class="stringliteral">&quot;get_bucket_acl successfully.&quot;</span> &lt;&lt; endl;
+                owner = acl.<a class="code" href="../../d6/dca/group___access_control_list.html#gada28bae1ead96aaa1900b59631a5d7b3" title="返回所有者 Owner">owner</a>();
+                cout &lt;&lt; <span class="stringliteral">&quot;grant = &quot;</span> &lt;&lt; acl.<a class="code" href="../../d6/dca/group___access_control_list.html#ga6ec0ae336d0f7e4bbfc3e3667d5b42ff" title="返回该AccessControlList中包含的所有授权信息Grant">grant</a>() &lt;&lt; endl 
+                        &lt;&lt; <span class="stringliteral">&quot;id = &quot;</span> &lt;&lt; owner.id() &lt;&lt; endl
+                        &lt;&lt; <span class="stringliteral">&quot;display_name = &quot;</span> &lt;&lt; owner.display_name() &lt;&lt; endl;
+        } <span class="keywordflow">else</span> {
+                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+        }
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div> <h3><a class="anchor" id="设置Bucket的ACL"></a>
+设置Bucket的ACL</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;<a class="code" href="../../d8/de1/client_8h.html">osscpp/client.h</a>&gt;</span>
+<span class="preprocessor"> #include &lt;iostream&gt;</span>
+<span class="preprocessor"> #include &lt;string&gt;</span>
+ 
+ <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>osscpp;
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_id = <span class="stringliteral">&quot;ACSfLOiddaOzejOP&quot;</span>;   <span class="comment">//设置用户帐号</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_key = <span class="stringliteral">&quot;MUltNpuYqE&quot;</span>;  <span class="comment">//设置用户密码</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> endpoint = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置hostname</span>
+ 
+ <span class="keywordtype">int</span> main()
+ {
+        <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> retcode;                 <span class="comment">//保存服务器http返回码的解析结果</span>
+        <span class="keyword">const</span> <span class="keywordtype">string</span> retinfo;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> client(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">string</span> bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;    <span class="comment">//设置bucket_name</span>
+ 
+        <span class="keyword">const</span> <span class="keywordtype">string</span> acl = <span class="stringliteral">&quot;private&quot;</span>;            <span class="comment">//设置bucket的访问权限（private，public-read，public-read-write中的一个）</span>
+        client.SetBucketAcl(bucket_name, acl, retcode);
+        printf(<span class="stringliteral">&quot;set_bucket_acl result:\n\n&quot;</span>);
+        <span class="keywordflow">if</span>(retcode == 0) {
+                cout &lt;&lt; <span class="stringliteral">&quot;set bucket acl successfully.&quot;</span> &lt;&lt; endl;
+        } <span class="keywordflow">else</span> {
+                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+        }
+ 
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div><h3><a class="anchor" id="列举Bucket下的Object"></a>
+列举Bucket下的Object</h3>
+<h4><a class="anchor" id="按名称返回请求者指定Bucket的所有Object"></a>
+按名称返回请求者指定Bucket的所有Object</h4>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;<a class="code" href="../../d8/de1/client_8h.html">osscpp/client.h</a>&gt;</span>
+<span class="preprocessor"> #include &lt;iostream&gt;</span>
+<span class="preprocessor"> #include &lt;string&gt;</span>
+ 
+ <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>osscpp;
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_id = <span class="stringliteral">&quot;ACSfLOiddaOzejOP&quot;</span>;   <span class="comment">//设置用户帐号</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_key = <span class="stringliteral">&quot;MUltNpuYqE&quot;</span>;  <span class="comment">//设置用户密码</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> endpoint = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置hostname</span>
+ 
+ <span class="keywordtype">int</span> main()
+ {
+        <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> retcode;                 <span class="comment">//保存服务器http返回码的解析结果</span>
+        <span class="keywordtype">int</span> i;
+        <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> client(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">string</span> bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;
+ 
+        <a class="code" href="../../df/dbe/classosscpp_1_1_object_listing.html" title="一个Bucket中所有的Object信息">ObjectListing</a> object_listing = client.ListObjects(bucket_name, retcode);
+        cout &lt;&lt; <span class="stringliteral">&quot;list_objects_with_bucket_name result:&quot;</span> &lt;&lt; endl &lt;&lt; endl;
+        <span class="keywordflow">if</span>(retcode == 0) {
+                cout &lt;&lt; <span class="stringliteral">&quot;list_objects_with_bucket_name successfully.&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;bucket_name = &quot;</span> &lt;&lt; object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#gaac2b9c264e28bdeb79d67272b0ec0984" title="获得Bucket名称">bucket_name</a>() &lt;&lt; endl
+                        &lt;&lt; <span class="stringliteral">&quot;next_marker = &quot;</span> &lt;&lt; object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#ga01a3162755679a284d8d1304ec5202c9" title="获得next_marker">next_marker</a>() &lt;&lt; endl
+                        &lt;&lt; <span class="stringliteral">&quot;prefix = &quot;</span> &lt;&lt; object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#ga1b3dacf95a24722e4fc3cc2cb5a51f6a" title="获得前缀">prefix</a>() &lt;&lt; endl
+                        &lt;&lt; <span class="stringliteral">&quot;marker = &quot;</span> &lt;&lt; object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#gaced324eddf276a72dfa63b1b71b5dbff" title="获得marker">marker</a>() &lt;&lt; endl
+                        &lt;&lt; <span class="stringliteral">&quot;max_keys = &quot;</span> &lt;&lt; object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#ga4dce3da3112e2db50aa987828afe51af" title="获得max_keys">max_keys</a>() &lt;&lt; endl
+                        &lt;&lt; <span class="stringliteral">&quot;delimiter = &quot;</span> &lt;&lt; object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#ga7474df11b2f8f7ba647c21a2fd05dc51" title="获得分隔符">delimiter</a>() &lt;&lt; endl
+                        &lt;&lt; <span class="stringliteral">&quot;is_truncated = &quot;</span> &lt;&lt; object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#ga0fb38f0a7c35084142fe03fd37abd280" title="获得is_truncated">is_truncated</a>() &lt;&lt; endl; 
+                <span class="keywordflow">for</span>(i = 0; i &lt; object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#ga0cee9012e21577ab38d7d62e9d117517" title="获得所有的Object信息">summaries</a>().size(); i++) {
+                        cout &lt;&lt; <span class="stringliteral">&quot;****************************************************************&quot;</span> &lt;&lt; endl;
+                        cout &lt;&lt; <span class="stringliteral">&quot;object [&quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot;] : &quot;</span> &lt;&lt; endl;
+                        cout &lt;&lt; <span class="stringliteral">&quot;type = &quot;</span> &lt;&lt; (object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#ga0cee9012e21577ab38d7d62e9d117517" title="获得所有的Object信息">summaries</a>())[i].type() &lt;&lt; endl 
+                                &lt;&lt; <span class="stringliteral">&quot;etag = &quot;</span> &lt;&lt; (object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#ga0cee9012e21577ab38d7d62e9d117517" title="获得所有的Object信息">summaries</a>())[i].etag() &lt;&lt; endl
+                                &lt;&lt; <span class="stringliteral">&quot;key = &quot;</span> &lt;&lt; (object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#ga0cee9012e21577ab38d7d62e9d117517" title="获得所有的Object信息">summaries</a>())[i].key() &lt;&lt; endl
+                                &lt;&lt; <span class="stringliteral">&quot;last_modified = &quot;</span> &lt;&lt; (object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#ga0cee9012e21577ab38d7d62e9d117517" title="获得所有的Object信息">summaries</a>())[i].last_modified() &lt;&lt; endl
+                                &lt;&lt; <span class="stringliteral">&quot;size = &quot;</span> &lt;&lt; (object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#ga0cee9012e21577ab38d7d62e9d117517" title="获得所有的Object信息">summaries</a>())[i].size() &lt;&lt; endl 
+                                &lt;&lt; <span class="stringliteral">&quot;storage_class = &quot;</span> &lt;&lt; (object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#ga0cee9012e21577ab38d7d62e9d117517" title="获得所有的Object信息">summaries</a>())[i].storage_class() &lt;&lt; endl
+                                &lt;&lt; <span class="stringliteral">&quot;id = &quot;</span> &lt;&lt; (object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#ga0cee9012e21577ab38d7d62e9d117517" title="获得所有的Object信息">summaries</a>())[i].owner().id() &lt;&lt; endl
+                                &lt;&lt; <span class="stringliteral">&quot;display_name = &quot;</span> &lt;&lt; (object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#ga0cee9012e21577ab38d7d62e9d117517" title="获得所有的Object信息">summaries</a>())[i].owner().display_name() &lt;&lt; endl;
+                }
+        } <span class="keywordflow">else</span> {
+                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+        }
+ 
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div> <h4><a class="anchor" id="按请求参数返回请求者指定Bucket下的所有Object列表"></a>
+按请求参数返回请求者指定Bucket下的所有Object列表</h4>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;<a class="code" href="../../d8/de1/client_8h.html">osscpp/client.h</a>&gt;</span>
+<span class="preprocessor"> #include &lt;iostream&gt;</span>
+<span class="preprocessor"> #include &lt;string&gt;</span>
+ 
+ <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>osscpp;
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_id  = <span class="stringliteral">&quot;ACSfLOiddaOzejOP&quot;</span>; <span class="comment">//设置用户 Access ID </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_key = <span class="stringliteral">&quot;MUltNpuYqE&quot;</span>; <span class="comment">// 设置用户的 Access Key</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="keywordtype">int</span> main()
+ {
+        <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> retcode;                 <span class="comment">//保存服务器http返回码的解析结果</span>
+        <span class="keywordtype">int</span> i;
+        <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> client(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">string</span> bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;
+        <a class="code" href="../../d7/de9/classosscpp_1_1_list_objects_request.html" title="包含获取object列表的请求信息">ListObjectsRequest</a> request;
+        request.<a class="code" href="../../d1/ddf/group___list_objects_request.html#ga3cc77962177e5d0562b848467ab59cb0" title="设置Bucket名称">set_bucket_name</a>(bucket_name);
+        request.<a class="code" href="../../d1/ddf/group___list_objects_request.html#gafd48ceb9a400cafbdcfbcdf8032a64db" title="设置前缀">set_prefix</a>(<span class="stringliteral">&quot;fun/&quot;</span>);          <span class="comment">//设置prefix</span>
+        request.<a class="code" href="../../d1/ddf/group___list_objects_request.html#ga98ac892662d9071010cb2c2eaf914b98" title="设置分隔符">set_delimiter</a>(<span class="stringliteral">&quot;/&quot;</span>);      <span class="comment">//设置delimiter</span>
+        request.<a class="code" href="../../d1/ddf/group___list_objects_request.html#gaffb05d444160782a21b0fea36d933a92" title="设置max_keys">set_max_keys</a>(3);      <span class="comment">//设置max_keys</span>
+        request.<a class="code" href="../../d1/ddf/group___list_objects_request.html#gaa3ccaddd15f2647684eae9a712f29331" title="设置marker">set_marker</a>(<span class="stringliteral">&quot;a&quot;</span>);         <span class="comment">//设置marker</span>
+ 
+ 
+ 
+        <a class="code" href="../../df/dbe/classosscpp_1_1_object_listing.html" title="一个Bucket中所有的Object信息">ObjectListing</a> object_listing = client.ListObjects(request, retcode);
+        cout &lt;&lt; <span class="stringliteral">&quot;list_objects_with_bucket_name result:&quot;</span> &lt;&lt; endl &lt;&lt; endl;
+        <span class="keywordflow">if</span>(retcode == 0) {
+                cout &lt;&lt; <span class="stringliteral">&quot;list_objects_with_bucket_name successfully.&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;bucket_name = &quot;</span> &lt;&lt; object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#gaac2b9c264e28bdeb79d67272b0ec0984" title="获得Bucket名称">bucket_name</a>() &lt;&lt; endl 
+                        &lt;&lt; <span class="stringliteral">&quot;next_marker = &quot;</span> &lt;&lt; object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#ga01a3162755679a284d8d1304ec5202c9" title="获得next_marker">next_marker</a>() &lt;&lt; endl
+                        &lt;&lt; <span class="stringliteral">&quot;prefix = &quot;</span> &lt;&lt; object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#ga1b3dacf95a24722e4fc3cc2cb5a51f6a" title="获得前缀">prefix</a>() &lt;&lt; endl
+                        &lt;&lt; <span class="stringliteral">&quot;marker = &quot;</span> &lt;&lt; object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#gaced324eddf276a72dfa63b1b71b5dbff" title="获得marker">marker</a>() &lt;&lt; endl
+                        &lt;&lt; <span class="stringliteral">&quot;max_keys = &quot;</span> &lt;&lt; object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#ga4dce3da3112e2db50aa987828afe51af" title="获得max_keys">max_keys</a>() &lt;&lt; endl
+                        &lt;&lt; <span class="stringliteral">&quot;delimiter = &quot;</span> &lt;&lt; object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#ga7474df11b2f8f7ba647c21a2fd05dc51" title="获得分隔符">delimiter</a>() &lt;&lt; endl
+                        &lt;&lt; <span class="stringliteral">&quot;is_truncated = &quot;</span> &lt;&lt; object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#ga0fb38f0a7c35084142fe03fd37abd280" title="获得is_truncated">is_truncated</a>() &lt;&lt; endl; 
+                <span class="keywordflow">for</span>(i = 0; i &lt; object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#ga0cee9012e21577ab38d7d62e9d117517" title="获得所有的Object信息">summaries</a>().size(); i++) {
+                        cout &lt;&lt; <span class="stringliteral">&quot;****************************************************************&quot;</span> &lt;&lt; endl;
+                        cout &lt;&lt; <span class="stringliteral">&quot;object [&quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot;] : &quot;</span> &lt;&lt; endl;
+                        cout &lt;&lt; <span class="stringliteral">&quot;type = &quot;</span> &lt;&lt; (object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#ga0cee9012e21577ab38d7d62e9d117517" title="获得所有的Object信息">summaries</a>())[i].type() &lt;&lt; endl 
+                                &lt;&lt; <span class="stringliteral">&quot;etag = &quot;</span> &lt;&lt; (object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#ga0cee9012e21577ab38d7d62e9d117517" title="获得所有的Object信息">summaries</a>())[i].etag() &lt;&lt; endl
+                                &lt;&lt; <span class="stringliteral">&quot;key = &quot;</span> &lt;&lt; (object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#ga0cee9012e21577ab38d7d62e9d117517" title="获得所有的Object信息">summaries</a>())[i].key() &lt;&lt; endl
+                                &lt;&lt; <span class="stringliteral">&quot;last_modified = &quot;</span> &lt;&lt; (object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#ga0cee9012e21577ab38d7d62e9d117517" title="获得所有的Object信息">summaries</a>())[i].last_modified() &lt;&lt; endl
+                                &lt;&lt; <span class="stringliteral">&quot;size = &quot;</span> &lt;&lt; (object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#ga0cee9012e21577ab38d7d62e9d117517" title="获得所有的Object信息">summaries</a>())[i].size() &lt;&lt; endl 
+                                &lt;&lt; <span class="stringliteral">&quot;storage_class = &quot;</span> &lt;&lt; (object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#ga0cee9012e21577ab38d7d62e9d117517" title="获得所有的Object信息">summaries</a>())[i].storage_class() &lt;&lt; endl
+                                &lt;&lt; <span class="stringliteral">&quot;id = &quot;</span> &lt;&lt; (object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#ga0cee9012e21577ab38d7d62e9d117517" title="获得所有的Object信息">summaries</a>())[i].owner().id() &lt;&lt; endl
+                                &lt;&lt; <span class="stringliteral">&quot;display_name = &quot;</span> &lt;&lt; (object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#ga0cee9012e21577ab38d7d62e9d117517" title="获得所有的Object信息">summaries</a>())[i].owner().display_name() &lt;&lt; endl;
+                }
+                cout &lt;&lt; <span class="stringliteral">&quot;==================================================================&quot;</span> &lt;&lt; endl;
+                <span class="keywordflow">for</span>(i = 0; i &lt; object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#gac5e4de54c345a3b2192d2592258c4998" title="获得common_prefixes">common_prefixes</a>().size(); i++) {
+                        cout &lt;&lt; <span class="stringliteral">&quot;common_prefix = &quot;</span> &lt;&lt; (object_listing.<a class="code" href="../../d1/de7/group___object_listing.html#gac5e4de54c345a3b2192d2592258c4998" title="获得common_prefixes">common_prefixes</a>())[i] &lt;&lt; endl;
+                }
+        } <span class="keywordflow">else</span> {
+                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+        }
+ 
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div><h3><a class="anchor" id="获取所有的Bucket"></a>
+获取所有的Bucket</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;<a class="code" href="../../d8/de1/client_8h.html">osscpp/client.h</a>&gt;</span>
+<span class="preprocessor"> #include &lt;iostream&gt;</span>
+<span class="preprocessor"> #include &lt;string&gt;</span>
+ 
+ <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>osscpp;
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_id = <span class="stringliteral">&quot;ACSfLOiddaOzejOP&quot;</span>;   <span class="comment">//设置用户帐号</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_key = <span class="stringliteral">&quot;MUltNpuYqE&quot;</span>;  <span class="comment">//设置用户密码</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> endpoint = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置hostname</span>
+ 
+ <span class="keywordtype">int</span> main()
+ {
+        <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> retcode;                 <span class="comment">//保存服务器http返回码的解析结果</span>
+        <span class="keyword">const</span> <span class="keywordtype">string</span> retinfo;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> client(access_id, access_key, endpoint);
+ 
+        <span class="keywordtype">int</span> i;
+        vector&lt;Bucket&gt; buckets;
+        Owner owner;
+        buckets = client.ListBuckets(retcode);
+        cout &lt;&lt; <span class="stringliteral">&quot;list buckets result:&quot;</span> &lt;&lt; endl &lt;&lt; endl;
+        <span class="keywordflow">if</span>(retcode == 0) {
+                cout &lt;&lt; <span class="stringliteral">&quot;list buckets successfully.&quot;</span> &lt;&lt; endl;
+                <span class="keywordflow">if</span>(buckets.size() != 0) {
+                        <span class="keywordflow">for</span>(i = 0; i &lt; buckets.size(); i++) {
+                                cout &lt;&lt; <span class="stringliteral">&quot;***********************************************************************&quot;</span> &lt;&lt; endl;
+                                cout &lt;&lt; <span class="stringliteral">&quot;bucket [&quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot;] : &quot;</span> &lt;&lt; endl;
+                                cout &lt;&lt; <span class="stringliteral">&quot;name = &quot;</span> &lt;&lt; buckets[i].name() 
+                                        &lt;&lt; <span class="stringliteral">&quot;\tcreate_date = &quot;</span> &lt;&lt; buckets[i].create_date() &lt;&lt; endl;
+                                owner = buckets[i].owner();
+                                cout &lt;&lt; <span class="stringliteral">&quot;id = &quot;</span> &lt;&lt; owner.id() &lt;&lt;
+                                        <span class="stringliteral">&quot;\tdisplay_name = &quot;</span> &lt;&lt; owner.display_name() &lt;&lt; endl;
+                        }
+                } <span class="keywordflow">else</span> {
+                        cout &lt;&lt; <span class="stringliteral">&quot;empty bucket list.&quot;</span> &lt;&lt; endl;
+                }
+        } <span class="keywordflow">else</span> {
+                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+        }
+ 
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div> <h3><a class="anchor" id="删除Bucket"></a>
+删除Bucket</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;<a class="code" href="../../d8/de1/client_8h.html">osscpp/client.h</a>&gt;</span>
+<span class="preprocessor"> #include &lt;iostream&gt;</span>
+<span class="preprocessor"> #include &lt;string&gt;</span>
+ 
+ <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>osscpp;
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_id  = <span class="stringliteral">&quot;ACSfLOiddaOzejOP&quot;</span>; <span class="comment">//设置用户 Access ID </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_key = <span class="stringliteral">&quot;MUltNpuYqE&quot;</span>; <span class="comment">// 设置用户的 Access Key </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="keywordtype">int</span> main()
+ {
+        <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+ 
+        <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> client(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">string</span> bucket_name = <span class="stringliteral">&quot;abucket_example&quot;</span>;       <span class="comment">//设置bucket_name</span>
+ 
+        client.DeleteBucket(bucket_name, retcode);
+        cout &lt;&lt; <span class="stringliteral">&quot;delete_bucket result:&quot;</span> &lt;&lt; endl &lt;&lt; endl;
+        <span class="keywordflow">if</span>(retcode == <a class="code" href="../../d0/ddb/oss__constants_8h.html#a47e379f5cee4d1a1860cfe0690052c41a5ecba375070ad29ed96dff844d90a707">NO_CONTENT</a>) {
+                cout &lt;&lt; <span class="stringliteral">&quot;delete bucket successfully.&quot;</span> &lt;&lt; endl;
+        } <span class="keywordflow">else</span> {
+                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+        }
+ 
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div><h2><a class="anchor" id="Object操作"></a>
+Object操作</h2>
+<h3><a class="anchor" id="上传Object"></a>
+上传Object</h3>
+<h4><a class="anchor" id="从文件上传Ojbect至OSS服务器"></a>
+从文件上传Ojbect至OSS服务器</h4>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;<a class="code" href="../../d8/de1/client_8h.html">osscpp/client.h</a>&gt;</span>
+<span class="preprocessor"> #include &lt;iostream&gt;</span>
+<span class="preprocessor"> #include &lt;fstream&gt;</span>
+<span class="preprocessor"> #include &lt;string&gt;</span>
+<span class="preprocessor"> #include &lt;sstream&gt;</span>
+ 
+ <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>osscpp;
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="keywordtype">long</span>
+ _GetFileSize(FILE *fp)
+ {
+     <span class="keywordtype">long</span> <span class="keywordtype">int</span> save_pos;
+     <span class="keywordtype">long</span> size_of_file;
+     save_pos = ftell(fp);
+     fseek(fp, 0L, SEEK_END);
+     size_of_file = ftell(fp);
+     fseek(fp, save_pos, SEEK_SET);
+     <span class="keywordflow">return</span> size_of_file;
+ }
+
+ <span class="keywordtype">int</span> main()
+ {
+ 
+        <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+ 
+        <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> client(access_id, access_key, endpoint);
+ 
+        <span class="keyword">const</span> <span class="keywordtype">string</span> bucket_name = <span class="stringliteral">&quot;bucketname001&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">string</span> key         = <span class="stringliteral">&quot;put-ojbect.data&quot;</span>;      <span class="comment">//设置上传key</span>
+        <span class="keyword">const</span> <span class="keywordtype">string</span> local_file  = <span class="stringliteral">&quot;proactor.pdf&quot;</span>;         <span class="comment">//设置需要上传的文件</span>
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> retsize = 0; <span class="comment">// 读取文件时的返回值</span>
+ 
+        FILE *fp = fopen(local_file.c_str(), <span class="stringliteral">&quot;r&quot;</span>);
+        <span class="keywordflow">if</span> (fp == NULL) {
+                <span class="keywordflow">return</span> -1;
+        }
+        <span class="keywordtype">long</span> file_len = _GetFileSize(fp);
+        stringstream ss;
+        ss &lt;&lt; file_len;
+ 
+<span class="preprocessor"> #if 1</span>
+<span class="preprocessor"></span>        <span class="comment">// 初始化元信息，并设置相关属性 </span>
+        ObjectMetadata metadata;
+        metadata.set_content_length(ss.str()); 
+        metadata.set_content_type(<span class="stringliteral">&quot;application/octet-stream&quot;</span>);
+        metadata.set_cache_control(<span class="stringliteral">&quot;no-cache&quot;</span>);
+        metadata.set_content_encoding(<span class="stringliteral">&quot;utf-8&quot;</span>);
+        metadata.set_content_disposition(<span class="stringliteral">&quot;attachment;&quot;</span>);
+        metadata.set_expiration_time(<span class="stringliteral">&quot;Thu, 13 Sep 2012 21:08:42 GMT&quot;</span>);
+<span class="preprocessor"> #endif</span>
+<span class="preprocessor"></span>        <span class="comment">// 将文件上传至云服务器中</span>
+        <a class="code" href="../../d3/d75/classosscpp_1_1_put_object_result.html" title="上传object操作的返回结果">PutObjectResult</a> result = client.PutObjectFromFile(
+                        bucket_name, key, local_file, metadata, retcode);
+        <span class="keywordflow">if</span>(retcode == 0) {
+                cout &lt;&lt; <span class="stringliteral">&quot;put object successfully.&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;ETag: &quot;</span> &lt;&lt; result.<a class="code" href="../../d4/d62/group___put_object_result.html#gafb0916e92c5dde1ec32aa35de18e1ee7" title="获得新创建的OSSObject的ETag值">etag</a>() &lt;&lt; endl;
+        } <span class="keywordflow">else</span> {
+                cout &lt;&lt; <span class="stringliteral">&quot;failed to put object&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+        }
+        fclose(fp);
+ }
+</pre></div> <h4><a class="anchor" id="从内存块上传Ojbect至OSS服务器"></a>
+从内存块上传Ojbect至OSS服务器</h4>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;<a class="code" href="../../d8/de1/client_8h.html">osscpp/client.h</a>&gt;</span>
+<span class="preprocessor"> #include &lt;iostream&gt;</span>
+<span class="preprocessor"> #include &lt;fstream&gt;</span>
+<span class="preprocessor"> #include &lt;string&gt;</span>
+<span class="preprocessor"> #include &lt;sstream&gt;</span>
+ 
+ <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>osscpp;
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; <span class="comment">// 设置用户 Access ID </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; <span class="comment">// 设置用户的 Access Key </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="keywordtype">long</span>
+ _GetFileSize(FILE *fp)
+ {
+     <span class="keywordtype">long</span> <span class="keywordtype">int</span> save_pos;
+     <span class="keywordtype">long</span> size_of_file;
+     save_pos = ftell(fp);
+     fseek(fp, 0L, SEEK_END);
+     size_of_file = ftell(fp);
+     fseek(fp, save_pos, SEEK_SET);
+     <span class="keywordflow">return</span> size_of_file;
+ }
+ <span class="comment">// 将内存中的内容上传至云服务器中 </span>
+ <span class="keywordtype">int</span> main()
+ {
+ 
+        <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+ 
+        <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> client(access_id, access_key, endpoint);
+ 
+        <span class="keyword">const</span> <span class="keywordtype">string</span> bucket_name = <span class="stringliteral">&quot;bucketname001&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">string</span> key         = <span class="stringliteral">&quot;put-ojbect.data&quot;</span>;      <span class="comment">//设置上传key</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *local_file  = <span class="stringliteral">&quot;proactor.pdf&quot;</span>;         <span class="comment">//设置需要上传的文件</span>
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> retsize = 0; <span class="comment">// 读取文件时的返回值</span>
+ 
+        FILE *fp = fopen(local_file, <span class="stringliteral">&quot;r&quot;</span>);
+        <span class="keywordflow">if</span> (fp == NULL) {
+                fprintf(stderr, <span class="stringliteral">&quot;error in opening file %s\n&quot;</span>, local_file);
+                <span class="keywordflow">return</span> -1;
+        }
+ 
+        <span class="keywordtype">long</span> file_len = _GetFileSize(fp);
+        stringstream ss;
+        ss &lt;&lt; file_len;
+        <span class="keywordtype">char</span> *buffer = (<span class="keywordtype">char</span> *)malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">char</span>) * file_len + 1);
+ 
+        memset(buffer, <span class="charliteral">&#39;\0&#39;</span>, file_len + 1);
+        retsize = fread(buffer, 1, file_len, fp);
+ 
+        <span class="keywordflow">if</span> (retsize &lt; 0) {
+                fprintf(stderr, <span class="stringliteral">&quot;error in reading file %s.\n&quot;</span>, local_file);
+                <span class="keywordflow">return</span> -1;
+        }
+<span class="preprocessor"> #if 1</span>
+<span class="preprocessor"></span>        <span class="comment">// 初始化元信息，并设置相关属性 </span>
+        ObjectMetadata metadata;
+        metadata.set_content_length(ss.str()); <span class="comment">// 该参数必须设置 </span>
+        metadata.set_content_type(<span class="stringliteral">&quot;application/octet-stream&quot;</span>);
+        metadata.set_cache_control(<span class="stringliteral">&quot;no-cache&quot;</span>);
+        metadata.set_content_encoding(<span class="stringliteral">&quot;utf-8&quot;</span>);
+        metadata.set_content_disposition(<span class="stringliteral">&quot;attachment;&quot;</span>);
+        metadata.set_expiration_time(<span class="stringliteral">&quot;Thu, 13 Sep 2012 21:08:42 GMT&quot;</span>);
+<span class="preprocessor"> #endif</span>
+<span class="preprocessor"></span>        <span class="comment">// 将内存中的内容上传至云服务器中 </span>
+        <a class="code" href="../../d3/d75/classosscpp_1_1_put_object_result.html" title="上传object操作的返回结果">PutObjectResult</a> result = client.PutObjectFromBuffer(
+                        bucket_name, key, buffer, file_len, metadata, retcode);
+        <span class="keywordflow">if</span>(retcode == 0) {
+                cout &lt;&lt; <span class="stringliteral">&quot;put object successfully.&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;ETag: &quot;</span> &lt;&lt; result.<a class="code" href="../../d4/d62/group___put_object_result.html#gafb0916e92c5dde1ec32aa35de18e1ee7" title="获得新创建的OSSObject的ETag值">etag</a>() &lt;&lt; endl;
+        } <span class="keywordflow">else</span> {
+                cout &lt;&lt; <span class="stringliteral">&quot;failed to put object&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+        }
+        free(buffer);
+ }
+</pre></div><h3><a class="anchor" id="获取Object"></a>
+获取Object</h3>
+<h4><a class="anchor" id="获取Object到内存中"></a>
+获取Object到内存中</h4>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;<a class="code" href="../../d8/de1/client_8h.html">osscpp/client.h</a>&gt;</span>
+<span class="preprocessor"> #include &lt;iostream&gt;</span>
+<span class="preprocessor"> #include &lt;fstream&gt;</span>
+<span class="preprocessor"> #include &lt;string&gt;</span>
+ 
+ <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>osscpp;
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; <span class="comment">//设置用户 Access ID </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; <span class="comment">// 设置用户的 Access Key</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="keywordtype">int</span> main()
+ {
+        <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+ 
+        <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> client(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">string</span> bucket_name = <span class="stringliteral">&quot;bucketname001&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">string</span> key = <span class="stringliteral">&quot;glib-2.32.4.tar.xz&quot;</span>; 
+        <span class="keywordtype">string</span> local_file = <span class="stringliteral">&quot;local-file.tar.xz&quot;</span>;
+        <span class="keywordtype">void</span> *buffer = NULL;
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> buffer_len = 0;
+ 
+        std::ofstream ofs(local_file.c_str(), ofstream::binary);
+        <a class="code" href="../../d7/d0a/classosscpp_1_1_get_object_request.html" title="指定从OSS下载Object的请求参数">GetObjectRequest</a> request(bucket_name, key);
+ 
+        ObjectMetadata metadata = client.GetObject(request, &amp;buffer, buffer_len, retcode);
+ 
+        ofs.write(static_cast&lt;char *&gt;(buffer), buffer_len);
+        ofs.close();
+ 
+        <span class="keywordflow">if</span>(retcode == 0) {
+                cout &lt;&lt; <span class="stringliteral">&quot;get object successfully.&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;Content-Length: &quot;</span> &lt;&lt; metadata.content_length() &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;Content-Md5: &quot;</span> &lt;&lt; metadata.etag() &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;Content-Type: &quot;</span> &lt;&lt; metadata.content_type() &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;Last-Modified: &quot;</span> &lt;&lt; metadata.last_modified() &lt;&lt; endl;
+        } <span class="keywordflow">else</span> {
+                cout &lt;&lt; <span class="stringliteral">&quot;failed to get object&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+        }
+ 
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div><h4><a class="anchor" id="获取Object到文件中"></a>
+获取Object到文件中</h4>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;<a class="code" href="../../d8/de1/client_8h.html">osscpp/client.h</a>&gt;</span>
+<span class="preprocessor"> #include &lt;iostream&gt;</span>
+<span class="preprocessor"> #include &lt;string&gt;</span>
+ 
+ <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>osscpp;
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; <span class="comment">// 设置用户 Access ID </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; <span class="comment">// 设置用户的 Access Key </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="keywordtype">int</span> main()
+ {
+        <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+ 
+        <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> client(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">string</span> bucket_name = <span class="stringliteral">&quot;bucketname001&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">string</span> key = <span class="stringliteral">&quot;glib-2.32.4.tar.x&quot;</span>; 
+        <span class="keywordtype">string</span> local_file = <span class="stringliteral">&quot;local-file.tar.xz&quot;</span>;
+ 
+        <a class="code" href="../../d7/d0a/classosscpp_1_1_get_object_request.html" title="指定从OSS下载Object的请求参数">GetObjectRequest</a> request(bucket_name, key);
+        ObjectMetadata metadata = client.GetObject(request, local_file, retcode);
+        <span class="keywordflow">if</span>(retcode == 0) {
+                cout &lt;&lt; <span class="stringliteral">&quot;get object successfully.&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;Content-Length: &quot;</span> &lt;&lt; metadata.content_length() &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;Content-Md5: &quot;</span> &lt;&lt; metadata.etag() &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;Content-Type: &quot;</span> &lt;&lt; metadata.content_type() &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;Last-Modified: &quot;</span> &lt;&lt; metadata.last_modified() &lt;&lt; endl;
+        } <span class="keywordflow">else</span> {
+                cout &lt;&lt; <span class="stringliteral">&quot;failed to get object&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+        }
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div><h3><a class="anchor" id="拷贝Object"></a>
+拷贝Object</h3>
+<h4><a class="anchor" id="通过指定拷贝请求来完成拷贝Object"></a>
+通过指定拷贝请求来完成拷贝Object</h4>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;<a class="code" href="../../d8/de1/client_8h.html">osscpp/client.h</a>&gt;</span>
+<span class="preprocessor"> #include &lt;iostream&gt;</span>
+<span class="preprocessor"> #include &lt;string&gt;</span>
+ 
+ <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>osscpp;
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; <span class="comment">// 设置用户 Access ID </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; <span class="comment">// 设置用户的 Access Key </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="keywordtype">int</span> main()
+ {
+        <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+ 
+        <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> client(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">string</span> source_bucket_name = <span class="stringliteral">&quot;bucketname001&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">string</span> destination_bucket_name = <span class="stringliteral">&quot;bucketexamplex&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">string</span> source_key = <span class="stringliteral">&quot;glib-2.32.4.tar.xz&quot;</span>; 
+        <span class="keyword">const</span> <span class="keywordtype">string</span> destination_key = <span class="stringliteral">&quot;copy-of-glib-2.32.4.tar.xz&quot;</span>; 
+ 
+        <a class="code" href="../../d8/d60/classosscpp_1_1_copy_object_result.html" title="拷贝一个在OSS上已经存在的Object成另外一个Object的请求结果">CopyObjectResult</a> result = client.CopyObject(source_bucket_name, source_key,
+                        destination_bucket_name, destination_key,
+                        retcode);
+        <span class="keywordflow">if</span>(retcode == 0) {
+                cout &lt;&lt; <span class="stringliteral">&quot;copy object successfully.&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;ETag: &quot;</span> &lt;&lt; result.<a class="code" href="../../de/dab/group___copy_object_result.html#ga936cc799153a1f8f5bcb3c39edd9d380" title="获得新Object的ETag值">etag</a>() &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;Last Modified: &quot;</span> &lt;&lt; result.<a class="code" href="../../de/dab/group___copy_object_result.html#gaa88f44adced16fa7a5d15e01ed632d2f" title="获得新Object的最后修改时间">last_modified</a>() &lt;&lt; endl;
+        } <span class="keywordflow">else</span> {
+                cout &lt;&lt; <span class="stringliteral">&quot;failed to copy object&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+        }
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div><h4><a class="anchor" id="直接指定源和目的BucketName与Key拷贝Object"></a>
+直接指定源和目的BucketName与Key拷贝Object</h4>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;<a class="code" href="../../d8/de1/client_8h.html">osscpp/client.h</a>&gt;</span>
+<span class="preprocessor"> #include &lt;iostream&gt;</span>
+<span class="preprocessor"> #include &lt;string&gt;</span>
+ 
+ <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>osscpp;
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; <span class="comment">//设置用户 Access ID </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; <span class="comment">// 设置用户的 Access Key </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="keywordtype">int</span> main()
+ {
+        <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+ 
+        <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> client(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">string</span> source_bucket_name = <span class="stringliteral">&quot;bucketname001&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">string</span> destination_bucket_name = <span class="stringliteral">&quot;bucketexample03&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">string</span> source_key = <span class="stringliteral">&quot;glib-2.32.4.tar.xz&quot;</span>; 
+        <span class="keyword">const</span> <span class="keywordtype">string</span> destination_key = <span class="stringliteral">&quot;copy-of-glib-2.32.4.tar.xz&quot;</span>; 
+ 
+        <a class="code" href="../../d5/daa/classosscpp_1_1_copy_object_request.html" title="拷贝一个在OSS上已经存在的Object成另外一个Object的请求参数">CopyObjectRequest</a> request(source_bucket_name, source_key,
+                        destination_bucket_name, destination_key);
+        <a class="code" href="../../d8/d60/classosscpp_1_1_copy_object_result.html" title="拷贝一个在OSS上已经存在的Object成另外一个Object的请求结果">CopyObjectResult</a> result;
+        result = client.CopyObject(request, retcode);
+        <span class="keywordflow">if</span>(retcode == 0) {
+                cout &lt;&lt; <span class="stringliteral">&quot;copy object successfully.&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;Last Modified: &quot;</span> &lt;&lt; result.<a class="code" href="../../de/dab/group___copy_object_result.html#gaa88f44adced16fa7a5d15e01ed632d2f" title="获得新Object的最后修改时间">last_modified</a>() &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;ETAG: &quot;</span> &lt;&lt; result.<a class="code" href="../../de/dab/group___copy_object_result.html#ga936cc799153a1f8f5bcb3c39edd9d380" title="获得新Object的ETag值">etag</a>() &lt;&lt; endl;
+        } <span class="keywordflow">else</span> {
+                cout &lt;&lt; <span class="stringliteral">&quot;failed to copy object&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+        }
+ 
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div> <h3><a class="anchor" id="获取Object元信息"></a>
+获取Object元信息</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;<a class="code" href="../../d8/de1/client_8h.html">osscpp/client.h</a>&gt;</span>
+<span class="preprocessor"> #include &lt;iostream&gt;</span>
+<span class="preprocessor"> #include &lt;fstream&gt;</span>
+<span class="preprocessor"> #include &lt;string&gt;</span>
+ 
+ <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>osscpp;
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; <span class="comment">// 设置用户 Access ID </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; <span class="comment">// 设置用户的 Access Key </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="keywordtype">int</span> main()
+ {
+        <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+ 
+        <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> client(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">string</span> bucket_name = <span class="stringliteral">&quot;bucketname001&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">string</span> key = <span class="stringliteral">&quot;glib-2.32.4.tar.xz&quot;</span>; 
+        ObjectMetadata metadata = client.GetObjectMetadata(bucket_name, key, retcode);
+ 
+        <span class="keywordflow">if</span>(retcode == 0) {
+                cout &lt;&lt; <span class="stringliteral">&quot;get object successfully.&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;Content-Length: &quot;</span> &lt;&lt; metadata.content_length() &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;Content-Md5: &quot;</span> &lt;&lt; metadata.etag() &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;Content-Type: &quot;</span> &lt;&lt; metadata.content_type() &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;Last-Modified: &quot;</span> &lt;&lt; metadata.last_modified() &lt;&lt; endl;
+        } <span class="keywordflow">else</span> {
+                cout &lt;&lt; <span class="stringliteral">&quot;failed to get object&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+        }
+ 
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div><h3><a class="anchor" id="删除Object"></a>
+删除Object</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;<a class="code" href="../../d8/de1/client_8h.html">osscpp/client.h</a>&gt;</span>
+<span class="preprocessor"> #include &lt;iostream&gt;</span>
+<span class="preprocessor"> #include &lt;string&gt;</span>
+ 
+ <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>osscpp;
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; <span class="comment">// 设置用户 Access ID </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; <span class="comment">// 设置用户的 Access Key </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="keywordtype">int</span> main()
+ {
+        <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+ 
+        <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> client(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">string</span> bucket_name = <span class="stringliteral">&quot;bucketname001&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">string</span> key = <span class="stringliteral">&quot;accumulo-1.4.0-src.tar.gz&quot;</span>; 
+ 
+        client.DeleteObject(bucket_name, key, retcode);
+        <span class="keywordflow">if</span>(retcode == 0) {
+                cout &lt;&lt; <span class="stringliteral">&quot;delete object successfully.&quot;</span> &lt;&lt; endl;
+        } <span class="keywordflow">else</span> {
+                cout &lt;&lt; <span class="stringliteral">&quot;failed to delete object&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+        }
+ 
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div><h3><a class="anchor" id="一次性删除多个Object"></a>
+一次性删除多个Object</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;<a class="code" href="../../d8/de1/client_8h.html">osscpp/client.h</a>&gt;</span>
+<span class="preprocessor"> #include &lt;iostream&gt;</span>
+<span class="preprocessor"> #include &lt;string&gt;</span>
+ 
+ <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>osscpp;
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; <span class="comment">//设置用户 Access ID </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; <span class="comment">// 设置用户的 Access Key </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="keywordtype">int</span> main()
+ {
+        <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+ 
+        <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> client(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">string</span> bucket_name = <span class="stringliteral">&quot;bucketexample&quot;</span>;       <span class="comment">//设置bucket_name</span>
+ 
+        vector&lt;string&gt; keys;
+        keys.push_back(<span class="stringliteral">&quot;multipart-upload.data&quot;</span>);
+        keys.push_back(<span class="stringliteral">&quot;put-object.data&quot;</span>);
+        <span class="keywordtype">bool</span> mode = <span class="keyword">true</span>;
+        <a class="code" href="../../de/d7b/classosscpp_1_1_delete_multiple_object_request.html" title="删除指定Bucket的多个Object">DeleteMultipleObjectRequest</a> request(bucket_name, keys, mode);
+ 
+        client.DeleteMultipleObject(request, retcode);
+        <span class="keywordflow">if</span>(retcode == 0) {
+                cout &lt;&lt; <span class="stringliteral">&quot;delete multiple object successfully.&quot;</span> &lt;&lt; endl;
+        } <span class="keywordflow">else</span> {
+                cout &lt;&lt; <span class="stringliteral">&quot;failed to delete multiple object&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+        }
+ 
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div><h2><a class="anchor" id="Multipart"></a>
+Multipart Upload操作</h2>
+<h3><a class="anchor" id="初始化Multipart-Upload操作"></a>
+初始化Multipart-Upload操作</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;<a class="code" href="../../d8/de1/client_8h.html">osscpp/client.h</a>&gt;</span>
+<span class="preprocessor"> #include &lt;iostream&gt;</span>
+<span class="preprocessor"> #include &lt;string&gt;</span>
+ 
+ <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>osscpp;
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; <span class="comment">//设置用户 Access ID </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; <span class="comment">// 设置用户的 Access Key </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="keywordtype">int</span> main()
+ {
+        <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+ 
+        <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> client(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">string</span> bucket_name = <span class="stringliteral">&quot;bucketname001&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">string</span> key = <span class="stringliteral">&quot;accumulo-1.4.0-src.tar.gz&quot;</span>; 
+ 
+        <a class="code" href="../../d8/d0f/classosscpp_1_1_initiate_multipart_upload_request.html" title="包含初始化一个Multipart上传事件的请求参数">InitiateMultipartUploadRequest</a> request(bucket_name, key);
+        <a class="code" href="../../d3/db3/structosscpp_1_1_initiate_multipart_upload_result.html" title="包含初始化一个Multipart上传事件的结果参数">InitiateMultipartUploadResult</a> result = client.InitiateMultipartUpload(request, retcode);
+        <span class="keywordflow">if</span>(retcode == 0) {
+                cout &lt;&lt; <span class="stringliteral">&quot;initiate_multipart_upload execute successfully.&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;Upload ID: &quot;</span> &lt;&lt; result.<a class="code" href="../../d4/d13/group___initiate_multipart_upload_result.html#ga99aa54e3262d923c882a4334ac769160" title="获得Upload ID">upload_id</a>() &lt;&lt; endl;
+        } <span class="keywordflow">else</span> {
+                cout &lt;&lt; <span class="stringliteral">&quot;failed to initiate multipart upload&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+        }
+ 
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div> <h3><a class="anchor" id="上传Part"></a>
+上传Part</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;<a class="code" href="../../d8/de1/client_8h.html">osscpp/client.h</a>&gt;</span>
+<span class="preprocessor"> #include &lt;iostream&gt;</span>
+<span class="preprocessor"> #include &lt;string&gt;</span>
+ 
+ <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>osscpp;
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; <span class="comment">//设置用户 Access ID </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; <span class="comment">// 设置用户的 Access Key </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="keywordtype">int</span> main()
+ {
+ 
+        <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+ 
+        <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> client(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">string</span> bucket_name = <span class="stringliteral">&quot;bucketname001&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">string</span> key = <span class="stringliteral">&quot;accumulo-1.4.0-src.tar.gz&quot;</span>; 
+ 
+        <span class="comment">// TODO: 设置upload id，此upload id由initiate multipart upload 操作返回</span>
+        <span class="keyword">const</span> <span class="keywordtype">string</span> upload_id = <span class="stringliteral">&quot;0004CB9D8ADBD007E25D68FA4AEEBDF1&quot;</span>;
+ 
+        FILE *fp= fopen(<span class="stringliteral">&quot;mysql-5.1.52.tar.gz&quot;</span>, <span class="stringliteral">&quot;r&quot;</span>); 
+        <span class="keywordflow">if</span> (fp == NULL) {
+                fprintf(stderr, <span class="stringliteral">&quot;error in opening file...\nplease check again before upload part !\n&quot;</span>);
+                <span class="keywordflow">return</span> -1;
+        }
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> file_len = Util::GetFileSize(fp); <span class="comment">// 获取文件大小 </span>
+        
+        <span class="keywordtype">char</span> *buffer = (<span class="keywordtype">char</span> *)malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">char</span>) * file_len + 1);
+        memset(buffer, <span class="charliteral">&#39;\0&#39;</span>, file_len + 1);
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> file_sz = fread(buffer, 1, file_len, fp);
+        <span class="keywordflow">if</span> (file_sz &lt; file_len) {fprintf(stderr, <span class="stringliteral">&quot;fread error.\n&quot;</span>); <span class="keywordflow">return</span> -1;}
+        <span class="keyword">const</span> <span class="keywordtype">int</span> single_request_len = 8 * 1024 * 1024; <span class="comment">// 每个Part的大小 </span>
+        <span class="keywordtype">int</span> requests_num = file_len / single_request_len; <span class="comment">// 需要多少次上传 </span>
+        <span class="keywordtype">int</span> current_part_number = 0; <span class="comment">// 当前上传的 Part Number </span>
+ 
+        <a class="code" href="../../d7/da8/classosscpp_1_1_upload_part_request.html" title="包含上传Multipart分块（Part）参数">UploadPartRequest</a> request;
+        request.<a class="code" href="../../d4/d2a/group___upload_part_request.html#gaad728807478fe1d5a21b961a3b2c9408" title="设置Bucket名称">set_bucket_name</a>(bucket_name);
+        request.<a class="code" href="../../d4/d2a/group___upload_part_request.html#ga3075f93b9a58105d965a00046593b777" title="设置OSSObject key">set_key</a>(key);
+        request.<a class="code" href="../../d4/d2a/group___upload_part_request.html#ga994bff1df8b7526a1eea1f654cb6116d" title="设置标识Multipart上传事件的Upload ID">set_upload_id</a>(upload_id);
+ 
+        <span class="keywordflow">for</span> (current_part_number = 0; current_part_number &lt; requests_num + 1; current_part_number++) {
+                <span class="comment">// 除了最后一块的其他块，最小为 5MB，此处设置单个Part为single_request_len = 8MB </span>
+                <span class="keywordflow">if</span> (current_part_number &lt; requests_num) { 
+                        request.<a class="code" href="../../d4/d2a/group___upload_part_request.html#ga071f40326ea61ff72bebe748d9fd8483" title="设置上传分块（Part）的标识号码（Part Number）">set_part_number</a>(current_part_number + 1);
+                        <span class="keywordtype">void</span> *input_stream = buffer + current_part_number * single_request_len;
+                        request.<a class="code" href="../../d4/d2a/group___upload_part_request.html#gae526aaaf9dd0f1404728ff286bfb1116" title="设置包含上传分块内容的数据流">set_input_stream</a>(input_stream);
+                        request.<a class="code" href="../../d4/d2a/group___upload_part_request.html#ga249ac4c6321e4d15326b1bed070b8dc5" title="设置返回分块（Part）数据的字节数">set_part_size</a>(single_request_len);
+ 
+                        <span class="comment">// 上传Part </span>
+                        <a class="code" href="../../d1/d50/classosscpp_1_1_upload_part_result.html" title="包含向OSS上传Multipart分块（Part）的结果信息">UploadPartResult</a> result  = client.UploadPart(request, retcode);
+ 
+                        <span class="keywordflow">if</span> (retcode == <a class="code" href="../../d0/ddb/oss__constants_8h.html#a47e379f5cee4d1a1860cfe0690052c41a2bc49ec37d6a5715dd23e85f1ff5bb59">OK</a>) { 
+                                cout &lt;&lt; <span class="stringliteral">&quot;PartNumber: &quot;</span> &lt;&lt; result.<a class="code" href="../../d8/dfc/group___upload_part_result.html#ga8b4ceb5d1322a1f20b04a23cef0cdc76" title="返回分块（Part）标识号">part_number</a>() &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; <span class="stringliteral">&quot;ETag: &quot;</span> &lt;&lt; result.<a class="code" href="../../d8/dfc/group___upload_part_result.html#gacc8bc0db242cae9fee97ca19ed16db72" title="获得OSS生成的ETag值">etag</a>() &lt;&lt; endl;
+                        } <span class="keywordflow">else</span> { 
+                                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+                        }
+                } <span class="keywordflow">else</span> { 
+                        request.<a class="code" href="../../d4/d2a/group___upload_part_request.html#ga071f40326ea61ff72bebe748d9fd8483" title="设置上传分块（Part）的标识号码（Part Number）">set_part_number</a>(current_part_number + 1);
+                        <span class="keywordtype">void</span> *input_stream = buffer + current_part_number *single_request_len ;
+                        request.<a class="code" href="../../d4/d2a/group___upload_part_request.html#gae526aaaf9dd0f1404728ff286bfb1116" title="设置包含上传分块内容的数据流">set_input_stream</a>(input_stream);
+                        request.<a class="code" href="../../d4/d2a/group___upload_part_request.html#ga249ac4c6321e4d15326b1bed070b8dc5" title="设置返回分块（Part）数据的字节数">set_part_size</a>(file_len - single_request_len * current_part_number);
+ 
+                        <span class="comment">// 上传Part </span>
+                        <a class="code" href="../../d1/d50/classosscpp_1_1_upload_part_result.html" title="包含向OSS上传Multipart分块（Part）的结果信息">UploadPartResult</a> result  = client.UploadPart(request, retcode);
+ 
+                        <span class="keywordflow">if</span> (retcode == <a class="code" href="../../d0/ddb/oss__constants_8h.html#a47e379f5cee4d1a1860cfe0690052c41a2bc49ec37d6a5715dd23e85f1ff5bb59">OK</a>) { 
+                                cout &lt;&lt; <span class="stringliteral">&quot;PartNumber: &quot;</span> &lt;&lt; result.<a class="code" href="../../d8/dfc/group___upload_part_result.html#ga8b4ceb5d1322a1f20b04a23cef0cdc76" title="返回分块（Part）标识号">part_number</a>() &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; <span class="stringliteral">&quot;ETag: &quot;</span> &lt;&lt; result.<a class="code" href="../../d8/dfc/group___upload_part_result.html#gacc8bc0db242cae9fee97ca19ed16db72" title="获得OSS生成的ETag值">etag</a>() &lt;&lt; endl;
+                        } <span class="keywordflow">else</span> { 
+                                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+                        }
+                }
+        }
+ 
+        free(buffer);
+        fclose(fp);
+ 
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div> <h3><a class="anchor" id="完成Multipart-Upload"></a>
+完成Multipart-Upload</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;<a class="code" href="../../d8/de1/client_8h.html">osscpp/client.h</a>&gt;</span>
+<span class="preprocessor"> #include &lt;iostream&gt;</span>
+<span class="preprocessor"> #include &lt;string&gt;</span>
+ 
+ <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>osscpp;
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; <span class="comment">//设置用户 Access ID </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; <span class="comment">// 设置用户的 Access Key </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="keyword">const</span> <span class="keywordtype">char</span> *etags[] = {
+        <span class="stringliteral">&quot;5EAE389C2B7DB4D7CBF36B6F125272F6&quot;</span>,
+        <span class="stringliteral">&quot;F8EC926E209252B72CFBB775A9360E8D&quot;</span>
+ };
+ 
+ <span class="keywordtype">int</span> main()
+ {
+ 
+        <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+ 
+        <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> client(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">string</span> bucket_name = <span class="stringliteral">&quot;bucketname001&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">string</span> key = <span class="stringliteral">&quot;accumulo-1.4.0-src.tar.gz&quot;</span>; 
+ 
+        <span class="comment">// TODO: 设置upload id，此upload id由initiate multipart upload 操作返回 </span>
+        <span class="keyword">const</span> <span class="keywordtype">string</span> upload_id = <span class="stringliteral">&quot;0004CB9D8ADBD007E25D68FA4AEEBDF1&quot;</span>;
+ 
+        vector&lt;PartEtag&gt; vparts;
+        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <span class="keyword">sizeof</span>(etags) / <span class="keyword">sizeof</span>(<span class="keywordtype">char</span> *); i++) {
+                PartEtag part(i + 1, etags[i]);
+                vparts.push_back(part);
+        }
+        <a class="code" href="../../db/d02/classosscpp_1_1_complete_multipart_upload_request.html" title="包含完成一个Multipart上传事件的请求参数">CompleteMultipartUploadRequest</a> request(bucket_name, key, upload_id, vparts);
+        <a class="code" href="../../d0/da9/classosscpp_1_1_complete_multipart_upload_result.html" title="包含完成一个Multipart上传事件的返回结果">CompleteMultipartUploadResult</a> result = client.CompleteMultipartUpload(request, retcode);
+ 
+        <span class="keywordflow">if</span>(retcode == 0) {
+                cout &lt;&lt; <span class="stringliteral">&quot;CompleteMultipartUpload execute successfully.&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;ETag: &quot;</span> &lt;&lt; result.<a class="code" href="../../d0/d82/group___complete_multipart_upload_result.html#ga17f170fb36a261e212be80577d713b4b" title="获得Object的MD5值">etag</a>() &lt;&lt; endl;
+        } <span class="keywordflow">else</span> {
+                cout &lt;&lt; <span class="stringliteral">&quot;failed!&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+        }
+ 
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div> <h3><a class="anchor" id="终止一个Multipart-Upload操作"></a>
+终止一个Multipart-Upload操作</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;<a class="code" href="../../d8/de1/client_8h.html">osscpp/client.h</a>&gt;</span>
+<span class="preprocessor"> #include &lt;iostream&gt;</span>
+<span class="preprocessor"> #include &lt;string&gt;</span>
+ 
+ <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>osscpp;
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; <span class="comment">//设置用户 Access ID </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; <span class="comment">// 设置用户的 Access Key </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="keywordtype">int</span> main()
+ {
+        <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+ 
+        <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> client(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">string</span> bucket_name = <span class="stringliteral">&quot;bucketname001&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">string</span> key = <span class="stringliteral">&quot;accumulo-1.4.0-src.tar.gz&quot;</span>; 
+        <span class="keyword">const</span> <span class="keywordtype">string</span> upload_id = <span class="stringliteral">&quot;0004CB9D8ADBD007E25D68FA4AEEBDF1&quot;</span>;
+        
+ 
+ 
+        <a class="code" href="../../d9/d8c/classosscpp_1_1_abort_multipart_upload_request.html" title="AbortMultipartUploadRequest 包含终止一个 Multipart 上传事件的请求参数">AbortMultipartUploadRequest</a> request(bucket_name, key, upload_id);
+        client.AbortMultipartUpload(request, retcode);
+        <span class="keywordflow">if</span>(retcode == 0) {
+                cout &lt;&lt; <span class="stringliteral">&quot;AbortMultipartUpload execute successfully.&quot;</span> &lt;&lt; endl;
+        } <span class="keywordflow">else</span> {
+                cout &lt;&lt; <span class="stringliteral">&quot;failed!&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+        }
+ 
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div><h3><a class="anchor" id="列出所有正在进行的Multipart-Uploads操作"></a>
+列出所有正在进行的Multipart-Uploads操作</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;<a class="code" href="../../d8/de1/client_8h.html">osscpp/client.h</a>&gt;</span>
+<span class="preprocessor"> #include &lt;iostream&gt;</span>
+<span class="preprocessor"> #include &lt;string&gt;</span>
+ 
+ <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>osscpp;
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; <span class="comment">//设置用户 Access ID </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; <span class="comment">// 设置用户的 Access Key </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="keywordtype">int</span> main()
+ {
+        <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+ 
+        <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> client(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">string</span> bucket_name = <span class="stringliteral">&quot;bucketname001&quot;</span>;       <span class="comment">//设置bucket_name</span>
+ 
+        <a class="code" href="../../d7/dfb/classosscpp_1_1_list_multipart_uploads_request.html" title="包含列出所有执行中Multipart上传事件的请求参数">ListMultipartUploadsRequest</a> request(bucket_name);
+        <a class="code" href="../../dc/d2c/classosscpp_1_1_multipart_upload_listing.html" title="包含Multipart上传事件的列表">MultipartUploadListing</a> listing = client.ListMultipartUploads(request, retcode);
+        <span class="keywordflow">if</span>(retcode == 0) {
+                cout &lt;&lt; <span class="stringliteral">&quot;ListMultipartUploads execute successfully.&quot;</span> &lt;&lt; endl;
+                vector&lt;MultipartUpload&gt; multipart_upload = listing.<a class="code" href="../../d5/dee/group___multipart_upload_listing.html#ga5bb60764eba5d1db98f1d42fdcb7ed65" title="获得各个multipart upload 的信息">multipart_uploads</a>();
+                vector&lt;MultipartUpload&gt;::iterator iter;
+                <span class="keywordflow">for</span> (iter = multipart_upload.begin(); iter != multipart_upload.end(); iter++) {
+                        cout &lt;&lt; <span class="stringliteral">&quot;++++++++++++++++++++++++++++++++++++++++++++++++&quot;</span> &lt;&lt; endl;
+                        cout &lt;&lt; <span class="stringliteral">&quot;Initiated: &quot;</span> &lt;&lt; (*iter).initiated() &lt;&lt; endl;
+                        cout &lt;&lt; <span class="stringliteral">&quot;Storage Class: &quot;</span> &lt;&lt; (*iter).storage_class() &lt;&lt; endl;
+                        cout &lt;&lt; <span class="stringliteral">&quot;Upload ID: &quot;</span> &lt;&lt; (*iter).upload_id() &lt;&lt; endl;
+                        cout &lt;&lt; <span class="stringliteral">&quot;Key: &quot;</span> &lt;&lt; (*iter).key() &lt;&lt; endl;
+                }
+        } <span class="keywordflow">else</span> {
+                cout &lt;&lt; <span class="stringliteral">&quot;failed!&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+        }
+ 
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div> <h3><a class="anchor" id="列出一个Multipart-Upload的所有已上传的parts"></a>
+列出一个Multipart-Upload的所有已上传的parts</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;<a class="code" href="../../d8/de1/client_8h.html">osscpp/client.h</a>&gt;</span>
+<span class="preprocessor"> #include &lt;iostream&gt;</span>
+<span class="preprocessor"> #include &lt;string&gt;</span>
+ 
+ <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>osscpp;
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; <span class="comment">//设置用户 Access ID </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; <span class="comment">// 设置用户的 Access Key </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="keywordtype">int</span> main()
+ {
+        <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+ 
+        <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> client(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">string</span> bucket_name = <span class="stringliteral">&quot;bucketname001&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">string</span> key = <span class="stringliteral">&quot;accumulo-1.4.0-src.tar.gz&quot;</span>; 
+        <span class="keyword">const</span> <span class="keywordtype">string</span> upload_id = <span class="stringliteral">&quot;0004CB9D8ADBD007E25D68FA4AEEBDF1&quot;</span>;
+        
+ 
+ 
+        <a class="code" href="../../db/df4/classosscpp_1_1_list_parts_request.html" title="包含列出Part的请求参数">ListPartsRequest</a> request(bucket_name, key, upload_id);
+        <a class="code" href="../../d0/d6d/classosscpp_1_1_part_listing.html" title="包含Multipart上传Part的表示">PartListing</a> listing = client.ListParts(request, retcode);
+        <span class="keywordflow">if</span>(retcode == 0) {
+                cout &lt;&lt; <span class="stringliteral">&quot;ListParts execute successfully.&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;Bucket Name: &quot;</span> &lt;&lt; listing.<a class="code" href="../../dd/d6f/group___part_listing.html#gadb09a0e70adf6558d9456699a5664e36" title="获得Bucket名称">bucket_name</a>() &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;Upload ID &quot;</span> &lt;&lt; listing.<a class="code" href="../../dd/d6f/group___part_listing.html#ga87de340b811ee64c5da520561f72cc10" title="获得Upload ID">upload_id</a>() &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;Storage Class: &quot;</span> &lt;&lt; listing.<a class="code" href="../../dd/d6f/group___part_listing.html#ga10946f950c1050093392ffc865e6bf68" title="获得Object的存储类别">storage_class</a>() &lt;&lt; endl;
+ 
+                vector&lt;PartSummary&gt; parts = listing.<a class="code" href="../../dd/d6f/group___part_listing.html#ga6b7448a977ac95de238341846c01fda0" title="获得PartSummary的列表">parts</a>();
+                vector&lt;PartSummary&gt;::iterator iter;
+                <span class="keywordflow">for</span> (iter = parts.begin(); iter != parts.end(); iter++) {
+                        cout &lt;&lt; <span class="stringliteral">&quot;Etag: &quot;</span> &lt;&lt; (*iter).etag() &lt;&lt; endl;
+                        cout &lt;&lt; <span class="stringliteral">&quot;Last Modified: &quot;</span> &lt;&lt; (*iter).last_modified() &lt;&lt; endl;
+                        cout &lt;&lt; <span class="stringliteral">&quot;Part Number: &quot;</span> &lt;&lt; (*iter).part_number() &lt;&lt; endl;
+                        cout &lt;&lt; <span class="stringliteral">&quot;Size: &quot;</span> &lt;&lt; (*iter).size() &lt;&lt; endl;
+ 
+                }
+        } <span class="keywordflow">else</span> {
+                cout &lt;&lt; <span class="stringliteral">&quot;failed!&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+        }
+ 
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div><h2><a class="anchor" id="Object"></a>
+Group 操作</h2>
+<h3><a class="anchor" id="Post"></a>
+Post Object Group 操作</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;<a class="code" href="../../d8/de1/client_8h.html">osscpp/client.h</a>&gt;</span>
+<span class="preprocessor"> #include &lt;iostream&gt;</span>
+<span class="preprocessor"> #include &lt;string&gt;</span>
+ 
+ <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>osscpp;
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_id  = <span class="stringliteral">&quot;ACSfLOiddaOzejOP&quot;</span>; <span class="comment">//设置用户 Access ID </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_key = <span class="stringliteral">&quot;MUltNpuYqE&quot;</span>; <span class="comment">// 设置用户的 Access Key </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="comment">//设置要组合的Objects的etag值 </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *etags[] = {
+        <span class="stringliteral">&quot;6F395BF16882D154CCB448806EA8C47D&quot;</span>,
+        <span class="stringliteral">&quot;321F048D6C898398F3168545F6CE8551&quot;</span>,
+        <span class="stringliteral">&quot;249697174471EEE73202E9214B037E08&quot;</span>,
+        <span class="stringliteral">&quot;B78E7B470FA41AA5478CFB0EDFF7B2E6&quot;</span>,
+        <span class="stringliteral">&quot;E0CA28D194BC790EF3C6236231D033A7&quot;</span>
+ };
+ 
+ <span class="comment">//设置要组合的Objects的name </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *partname[] = {
+        <span class="stringliteral">&quot;a.txt&quot;</span>,
+        <span class="stringliteral">&quot;b.txt&quot;</span>,
+        <span class="stringliteral">&quot;c.txt&quot;</span>,
+        <span class="stringliteral">&quot;d.txt&quot;</span>,
+        <span class="stringliteral">&quot;e.txt&quot;</span>
+ };
+ 
+ <span class="keywordtype">int</span> main()
+ {
+        <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+ 
+        <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> client(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">string</span> bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">string</span> key = <span class="stringliteral">&quot;a_group_file.dat&quot;</span>;             <span class="comment">//设置object group的名称</span>
+        <span class="keywordtype">int</span> i;
+        <span class="keywordtype">int</span> n = <span class="keyword">sizeof</span>(partname)/<span class="keyword">sizeof</span>(<span class="keywordtype">char</span> *);
+        <span class="comment">//构造各个Object的etag，name，ID到part_item </span>
+        vector&lt;ObjectGroupItem&gt; part_item;
+        <span class="keywordflow">for</span> (i = 0; i &lt; n; i++) {
+                <span class="keywordtype">string</span> etag = etags[i];
+                <span class="keywordtype">string</span> name = partname[i];
+                <span class="keywordtype">int</span> number = i + 1;
+                <a class="code" href="../../d2/d48/classosscpp_1_1_object_group_item.html" title="post object group 需要提供的 Object 信息">ObjectGroupItem</a> item(etag, name, number);
+                part_item.push_back(item);
+        }
+        <a class="code" href="../../d3/dcb/classosscpp_1_1_post_object_group_request.html" title="Object Group 是由一个或多个 Object 组成的松散的集合,它的数据长度是其 所属 Object 的数据长度的总和。用户可以指定在同一个 Bucket 下的一个或多个Object...">PostObjectGroupRequest</a> request(bucket_name, key, part_item);
+        <a class="code" href="../../dd/d47/classosscpp_1_1_post_object_group_result.html" title="创建对象组（Object Group）返回的结果">PostObjectGroupResult</a> result = client.PostObjectGroup(request, retcode);
+ 
+        cout &lt;&lt; <span class="stringliteral">&quot;post_obejct_group result:&quot;</span> &lt;&lt; endl &lt;&lt; endl;
+        <span class="keywordflow">if</span>(retcode == <a class="code" href="../../d0/ddb/oss__constants_8h.html#a47e379f5cee4d1a1860cfe0690052c41a2bc49ec37d6a5715dd23e85f1ff5bb59">OK</a>) {
+                cout &lt;&lt; <span class="stringliteral">&quot;post_object_group successfully.&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;bucket_name = &quot;</span> &lt;&lt; result.<a class="code" href="../../d2/dac/group___post_object_group_result.html#ga85f93baf233c87dbf612f45038590f21" title="获得Bucket名称">bucket_name</a>() &lt;&lt; endl &lt;&lt; <span class="stringliteral">&quot;key = &quot;</span> &lt;&lt; result.<a class="code" href="../../d2/dac/group___post_object_group_result.html#ga04969ea8782f94a06b8b1ab812a3de7d" title="获得Object名称">key</a>() &lt;&lt; endl &lt;&lt; <span class="stringliteral">&quot;etag = &quot;</span> &lt;&lt; result.<a class="code" href="../../d2/dac/group___post_object_group_result.html#gade9b3fdcc39a77f8fcc9640191e4c1b4" title="获得Object的etag值">etag</a>() &lt;&lt; endl &lt;&lt; <span class="stringliteral">&quot;size = &quot;</span> &lt;&lt; result.<a class="code" href="../../d2/dac/group___post_object_group_result.html#ga1543c62724e069ca68829b9864555935" title="获得Object的大小">size</a>() &lt;&lt; endl; 
+        } <span class="keywordflow">else</span> {
+                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+        }
+ 
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div><h3><a class="anchor" id="Get01"></a>
+Get Object Group 操作</h3>
+<h4><a class="anchor" id="获取Object-Group到内存"></a>
+获取Object-Group到内存</h4>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;<a class="code" href="../../d8/de1/client_8h.html">osscpp/client.h</a>&gt;</span>
+<span class="preprocessor"> #include &lt;iostream&gt;</span>
+<span class="preprocessor"> #include &lt;string&gt;</span>
+ 
+ <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>osscpp;
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_id  = <span class="stringliteral">&quot;ACSfLOiddaOzejOP&quot;</span>; <span class="comment">//设置用户 Access ID </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_key = <span class="stringliteral">&quot;MUltNpuYqE&quot;</span>; <span class="comment">// 设置用户的 Access Key </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="keywordtype">int</span> main()
+ {
+        <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+ 
+        <span class="keyword">const</span> <span class="keywordtype">string</span> bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">string</span> key = <span class="stringliteral">&quot;a_group_file.dat&quot;</span>;             <span class="comment">//设置object group的名称</span>
+        <span class="keywordtype">string</span> buffer;
+ 
+        <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> client(access_id, access_key, endpoint);
+        <a class="code" href="../../df/d39/classosscpp_1_1_get_object_group_request.html" title="指定从OSS下载Object group的请求参数">GetObjectGroupRequest</a> request(bucket_name, key);
+        ObjectMetadata result = client.GetObjectGroupToBuffer(request, buffer, retcode);
+ 
+        cout &lt;&lt; <span class="stringliteral">&quot;get_obejct_group_to_buffer result:&quot;</span> &lt;&lt; endl &lt;&lt; endl;
+        <span class="keywordflow">if</span>(retcode == <a class="code" href="../../d0/ddb/oss__constants_8h.html#a47e379f5cee4d1a1860cfe0690052c41a2bc49ec37d6a5715dd23e85f1ff5bb59">OK</a>) {
+                cout &lt;&lt; <span class="stringliteral">&quot;get_object_group_to_buffer successfully.&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;etag = &quot;</span> &lt;&lt; result.<a class="code" href="../../d2/dac/group___post_object_group_result.html#gade9b3fdcc39a77f8fcc9640191e4c1b4" title="获得Object的etag值">etag</a>() &lt;&lt; endl 
+                        &lt;&lt; <span class="stringliteral">&quot;last_modified = &quot;</span> &lt;&lt; result.last_modified() &lt;&lt; endl
+                        &lt;&lt; <span class="stringliteral">&quot;content_type = &quot;</span> &lt;&lt; result.content_type() &lt;&lt; endl
+                        &lt;&lt; <span class="stringliteral">&quot;content_length = &quot;</span> &lt;&lt; result.content_length() &lt;&lt; endl; 
+                cout &lt;&lt; <span class="stringliteral">&quot;buffer = &quot;</span> &lt;&lt; endl &lt;&lt; buffer &lt;&lt; endl;
+        } <span class="keywordflow">else</span> {
+                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+        }
+ 
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div> <h4><a class="anchor" id="获取Object-Group至本地文件"></a>
+获取Object-Group至本地文件</h4>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;<a class="code" href="../../d8/de1/client_8h.html">osscpp/client.h</a>&gt;</span>
+<span class="preprocessor"> #include &lt;iostream&gt;</span>
+<span class="preprocessor"> #include &lt;string&gt;</span>
+ 
+ <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>osscpp;
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_id  = <span class="stringliteral">&quot;ACSfLOiddaOzejOP&quot;</span>; <span class="comment">//设置用户 Access ID </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_key = <span class="stringliteral">&quot;MUltNpuYqE&quot;</span>; <span class="comment">// 设置用户的 Access Key </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="keywordtype">int</span> main()
+ {
+        <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+ 
+        <span class="keyword">const</span> <span class="keywordtype">string</span> bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">string</span> key = <span class="stringliteral">&quot;a_group_file.dat&quot;</span>;             <span class="comment">//设置object group的名称</span>
+        <span class="keyword">const</span> <span class="keywordtype">string</span> file_name = <span class="stringliteral">&quot;get_object_group&quot;</span>;
+ 
+        <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> client(access_id, access_key, endpoint);
+        <a class="code" href="../../df/d39/classosscpp_1_1_get_object_group_request.html" title="指定从OSS下载Object group的请求参数">GetObjectGroupRequest</a> request(bucket_name, key);
+        ObjectMetadata result = client.GetObjectGroupToFile(request, file_name, retcode);
+ 
+        cout &lt;&lt; <span class="stringliteral">&quot;get_obejct_group_to_buffer result:&quot;</span> &lt;&lt; endl &lt;&lt; endl;
+        <span class="keywordflow">if</span>(retcode == <a class="code" href="../../d0/ddb/oss__constants_8h.html#a47e379f5cee4d1a1860cfe0690052c41a2bc49ec37d6a5715dd23e85f1ff5bb59">OK</a>) {
+                cout &lt;&lt; <span class="stringliteral">&quot;get_object_group_to_buffer successfully.&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;etag = &quot;</span> &lt;&lt; result.etag() &lt;&lt; endl 
+                        &lt;&lt; <span class="stringliteral">&quot;last_modified = &quot;</span> &lt;&lt; result.last_modified() &lt;&lt; endl
+                        &lt;&lt; <span class="stringliteral">&quot;content_type = &quot;</span> &lt;&lt; result.content_type() &lt;&lt; endl
+                        &lt;&lt; <span class="stringliteral">&quot;content_length = &quot;</span> &lt;&lt; result.content_length() &lt;&lt; endl; 
+        } <span class="keywordflow">else</span> {
+                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+        }
+ 
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div><h3><a class="anchor" id="Get02"></a>
+Get Object Group Index 操作</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;<a class="code" href="../../d8/de1/client_8h.html">osscpp/client.h</a>&gt;</span>
+<span class="preprocessor"> #include &lt;iostream&gt;</span>
+<span class="preprocessor"> #include &lt;string&gt;</span>
+ 
+ <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>osscpp;
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_id  = <span class="stringliteral">&quot;ACSfLOiddaOzejOP&quot;</span>; <span class="comment">//设置用户 Access ID </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_key = <span class="stringliteral">&quot;MUltNpuYqE&quot;</span>; <span class="comment">// 设置用户的 Access Key </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="keywordtype">int</span> main()
+ {
+        <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+ 
+        <span class="keyword">const</span> <span class="keywordtype">string</span> bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">string</span> key = <span class="stringliteral">&quot;a_group_file.dat&quot;</span>;             <span class="comment">//设置object group的名称</span>
+        <span class="keywordtype">int</span> i;
+ 
+        <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> client(access_id, access_key, endpoint);
+        <a class="code" href="../../d5/da2/classosscpp_1_1_get_object_group_index_result.html" title="用于返回 Object Group 中的 Object vector 信息">GetObjectGroupIndexResult</a> result = client.GetObjectGroupIndex(bucket_name, key, retcode);
+ 
+        cout &lt;&lt; <span class="stringliteral">&quot;get_obejct_group_index result:&quot;</span> &lt;&lt; endl &lt;&lt; endl; 
+        <span class="keywordflow">if</span>(retcode == <a class="code" href="../../d0/ddb/oss__constants_8h.html#a47e379f5cee4d1a1860cfe0690052c41a2bc49ec37d6a5715dd23e85f1ff5bb59">OK</a>) {
+                cout &lt;&lt; <span class="stringliteral">&quot;get_object_group_index successfully.&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;bucket_name = &quot;</span> &lt;&lt; result.<a class="code" href="../../da/d1c/group___get_object_group_index_result.html#gae32fbb838120c30bdc32218f1524ef1b" title="获得Bucket名称">bucket_name</a>() &lt;&lt; endl &lt;&lt; <span class="stringliteral">&quot;key = &quot;</span> &lt;&lt; result.<a class="code" href="../../da/d1c/group___get_object_group_index_result.html#gab40d0bc44929dbcef1e35d1770ba2deb" title="获得Object名称">key</a>() &lt;&lt; endl &lt;&lt; <span class="stringliteral">&quot;etag = &quot;</span> &lt;&lt; result.<a class="code" href="../../da/d1c/group___get_object_group_index_result.html#ga08a5f464bc0cd6e0721bf63d3abc55f0" title="获得Object的MD5值">etag</a>() &lt;&lt; endl &lt;&lt; <span class="stringliteral">&quot;file_length = &quot;</span> &lt;&lt; result.<a class="code" href="../../da/d1c/group___get_object_group_index_result.html#ga197f651ed3d36f52260b7b93c8ba8336" title="获得Object的文件长度">file_length</a>() &lt;&lt; endl; 
+                printf(<span class="stringliteral">&quot;============================================\n&quot;</span>);
+                <span class="keywordflow">for</span>(i = 0; i &lt; result.<a class="code" href="../../da/d1c/group___get_object_group_index_result.html#ga0d1d868d5cdf5addaed61ec4106f5693" title="获得object group中的多个object列表">group</a>().size(); i++) {
+                        cout &lt;&lt; <span class="stringliteral">&quot;part [&quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot;] :&quot;</span> &lt;&lt; endl;
+                        cout &lt;&lt; <span class="stringliteral">&quot;etag = &quot;</span> &lt;&lt; (result.<a class="code" href="../../da/d1c/group___get_object_group_index_result.html#ga0d1d868d5cdf5addaed61ec4106f5693" title="获得object group中的多个object列表">group</a>())[i].etag() &lt;&lt; endl &lt;&lt; <span class="stringliteral">&quot;part_name = &quot;</span> &lt;&lt; (result.<a class="code" href="../../da/d1c/group___get_object_group_index_result.html#ga0d1d868d5cdf5addaed61ec4106f5693" title="获得object group中的多个object列表">group</a>())[i].part_name() &lt;&lt; endl &lt;&lt; <span class="stringliteral">&quot;part_number = &quot;</span> &lt;&lt; (result.<a class="code" href="../../da/d1c/group___get_object_group_index_result.html#ga0d1d868d5cdf5addaed61ec4106f5693" title="获得object group中的多个object列表">group</a>())[i].part_number() &lt;&lt; endl &lt;&lt; <span class="stringliteral">&quot;part_size = &quot;</span> &lt;&lt; (result.<a class="code" href="../../da/d1c/group___get_object_group_index_result.html#ga0d1d868d5cdf5addaed61ec4106f5693" title="获得object group中的多个object列表">group</a>())[i].part_size() &lt;&lt; endl;
+                        printf(<span class="stringliteral">&quot;*****************************************\n&quot;</span>);
+                }
+        } <span class="keywordflow">else</span> {
+                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+        }
+ 
+         <span class="keywordflow">return</span> 0;
+ }
+</pre></div><h3><a class="anchor" id="Head"></a>
+Head Object Group 操作</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;<a class="code" href="../../d8/de1/client_8h.html">osscpp/client.h</a>&gt;</span>
+<span class="preprocessor"> #include &lt;iostream&gt;</span>
+<span class="preprocessor"> #include &lt;string&gt;</span>
+ 
+ <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>osscpp;
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_id  = <span class="stringliteral">&quot;ACSfLOiddaOzejOP&quot;</span>; <span class="comment">//设置用户 Access ID </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_key = <span class="stringliteral">&quot;MUltNpuYqE&quot;</span>; <span class="comment">// 设置用户的 Access Key </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="keywordtype">int</span> main()
+ {
+        <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+ 
+        <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> client(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">string</span> bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">string</span> key = <span class="stringliteral">&quot;a_group_file.dat&quot;</span>;             <span class="comment">//设置object group的名称</span>
+ 
+        <a class="code" href="../../df/d39/classosscpp_1_1_get_object_group_request.html" title="指定从OSS下载Object group的请求参数">GetObjectGroupRequest</a> request(bucket_name, key);
+        request.set_modified_since_constraint(<span class="stringliteral">&quot;Sat, 20 Sep 2012 23:23:23 GMT&quot;</span>);
+        ObjectMetadata result = client.HeadObjectGroup(request, retcode);
+        cout &lt;&lt; <span class="stringliteral">&quot;head_obejct_group result:&quot;</span> &lt;&lt; endl &lt;&lt; endl;
+        <span class="keywordflow">if</span>(retcode == <a class="code" href="../../d0/ddb/oss__constants_8h.html#a47e379f5cee4d1a1860cfe0690052c41a2bc49ec37d6a5715dd23e85f1ff5bb59">OK</a>) {
+                cout &lt;&lt; <span class="stringliteral">&quot;head_object_group successfully.&quot;</span> &lt;&lt; endl;
+                cout &lt;&lt; <span class="stringliteral">&quot;content-length = &quot;</span> &lt;&lt; result.content_length() &lt;&lt; endl 
+                        &lt;&lt; <span class="stringliteral">&quot;content-type = &quot;</span> &lt;&lt; result.content_type() &lt;&lt; endl
+                        &lt;&lt; <span class="stringliteral">&quot;last_modified = &quot;</span> &lt;&lt; result.last_modified() &lt;&lt; endl;
+        } <span class="keywordflow">else</span> {
+                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+        }
+ 
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div><h3><a class="anchor" id="Delete"></a>
+Delete Object Group 操作</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;<a class="code" href="../../d8/de1/client_8h.html">osscpp/client.h</a>&gt;</span>
+<span class="preprocessor"> #include &lt;iostream&gt;</span>
+<span class="preprocessor"> #include &lt;string&gt;</span>
+ 
+ <span class="keyword">using namespace </span>std;
+ <span class="keyword">using namespace </span>osscpp;
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_id  = <span class="stringliteral">&quot;ACSfLOiddaOzejOP&quot;</span>; <span class="comment">//设置用户 Access ID </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> access_key = <span class="stringliteral">&quot;MUltNpuYqE&quot;</span>; <span class="comment">// 设置用户的 Access Key </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">string</span> endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="keywordtype">int</span> main()
+ {
+        <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+ 
+        <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> client(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">string</span> bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">string</span> key = <span class="stringliteral">&quot;a_group_file.dat&quot;</span>;             <span class="comment">//设置object group的名称</span>
+ 
+        client.DeleteObjectGroup(bucket_name, key, retcode);
+ 
+        cout &lt;&lt; <span class="stringliteral">&quot;delete_obejct_group result:&quot;</span> &lt;&lt; endl &lt;&lt; endl;
+        <span class="keywordflow">if</span>(retcode == <a class="code" href="../../d0/ddb/oss__constants_8h.html#a47e379f5cee4d1a1860cfe0690052c41a5ecba375070ad29ed96dff844d90a707">NO_CONTENT</a>) {
+                cout &lt;&lt; <span class="stringliteral">&quot;delete_object_group successfully.&quot;</span> &lt;&lt; endl;
+        } <span class="keywordflow">else</span> {
+                cout &lt;&lt; Util::GetMessageFromRetcode(retcode) &lt;&lt; endl;
+        }
+ 
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div> </div></div><!-- contents -->
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>命名空间</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>枚举</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>枚举值</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>宏定义</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="../../index.html">OSSCPP 开发者手册</a>      </li>
+
+    <li class="footer">Generated at 2012年十一月2日 星期五 17:55:27 for OSSCPP by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>

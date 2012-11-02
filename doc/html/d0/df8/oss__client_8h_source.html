@@ -1,0 +1,546 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>OSSCPP: oss_client.h源文件</title>
+
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">OSSCPP
+   &#160;<span id="projectnumber">0.1.0</span>
+   </div>
+   <div id="projectbrief">Aliyun Open Storage Service C++ SDK</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- 制作者 Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>首页</span></a></li>
+      <li><a href="../../modules.html"><span>模块</span></a></li>
+      <li><a href="../../namespaces.html"><span>命名空间</span></a></li>
+      <li><a href="../../annotated.html"><span>类</span></a></li>
+      <li class="current"><a href="../../files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>文件列表</span></a></li>
+      <li><a href="../../globals.html"><span>文件成员</span></a></li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('d0/df8/oss__client_8h.html','../../');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">oss_client.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d0/df8/oss__client_8h.html">浏览该文件的文档。</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<a name="l00002"></a>00002 <span class="comment"> * =============================================================================</span>
+<a name="l00003"></a>00003 <span class="comment"> *</span>
+<a name="l00004"></a>00004 <span class="comment"> *       Filename:  oss_client.h</span>
+<a name="l00005"></a>00005 <span class="comment"> *</span>
+<a name="l00006"></a>00006 <span class="comment"> *    Description:  oss client.</span>
+<a name="l00007"></a>00007 <span class="comment"> *</span>
+<a name="l00008"></a>00008 <span class="comment"> *        Company:  ICT ( Institute Of Computing Technology, CAS )</span>
+<a name="l00009"></a>00009 <span class="comment"> *</span>
+<a name="l00010"></a>00010 <span class="comment"> * =============================================================================</span>
+<a name="l00011"></a>00011 <span class="comment"> */</span>
+<a name="l00012"></a>00012 
+<a name="l00013"></a>00013 <span class="preprocessor">#ifndef _OSS_CLIENT_H</span>
+<a name="l00014"></a>00014 <span class="preprocessor"></span><span class="preprocessor"># error Never include &lt;oss/modules/oss_client.h&gt; directly, use &lt;ossc/client.h&gt; instead.</span>
+<a name="l00015"></a>00015 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00016"></a>00016 <span class="preprocessor"></span>
+<a name="l00017"></a>00017 <span class="preprocessor">#ifndef OSS_CLIENT_H</span>
+<a name="l00018"></a>00018 <span class="preprocessor"></span><span class="preprocessor">#define OSS_CLIENT_H</span>
+<a name="l00019"></a>00019 <span class="preprocessor"></span>
+<a name="l00020"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a7e3d14e18ccd7df5ba6adc93fb799513">00020</a> <span class="preprocessor">#define _OSS_ABORT_MULTIPART_UPLOAD_REQUEST_H</span>
+<a name="l00021"></a>00021 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d7/ded/oss__abort__multipart__upload__request_8h.html">osscpp/modules/oss_abort_multipart_upload_request.h</a>&gt;</span>
+<a name="l00022"></a>00022 <span class="preprocessor">#undef _OSS_ABORT_MULTIPART_UPLOAD_REQUEST_H</span>
+<a name="l00023"></a>00023 <span class="preprocessor"></span>
+<a name="l00024"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a33ff7d86d3547ef1d43509fda09c365e">00024</a> <span class="preprocessor">#define _OSS_ACCESS_CONTROL_LIST_H</span>
+<a name="l00025"></a>00025 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../da/d7a/oss__access__control__list_8h.html">osscpp/modules/oss_access_control_list.h</a>&gt;</span>
+<a name="l00026"></a>00026 <span class="preprocessor">#undef _oss_access_control_list_h</span>
+<a name="l00027"></a>00027 <span class="preprocessor"></span>
+<a name="l00028"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a212d0e944f01fa017815808a507f2099">00028</a> <span class="preprocessor">#define _OSS_BUCKET_H</span>
+<a name="l00029"></a>00029 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../da/d08/oss__bucket_8h.html">osscpp/modules/oss_bucket.h</a>&gt;</span>
+<a name="l00030"></a>00030 <span class="preprocessor">#undef _OSS_BUCKET_H</span>
+<a name="l00031"></a>00031 <span class="preprocessor"></span>
+<a name="l00032"></a><a class="code" href="../../d0/df8/oss__client_8h.html#aa7b8d5d001f61325f7f4bd8c46c73a9d">00032</a> <span class="preprocessor">#define _OSS_COMPLETE_MULTIPART_UPLOAD_REQUEST_H</span>
+<a name="l00033"></a>00033 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../dd/dae/oss__complete__multipart__upload__request_8h.html">osscpp/modules/oss_complete_multipart_upload_request.h</a>&gt;</span>
+<a name="l00034"></a>00034 <span class="preprocessor">#undef _oss_complete_multipart_upload_request_h</span>
+<a name="l00035"></a>00035 <span class="preprocessor"></span>
+<a name="l00036"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a396853ce7fc17768d8c70835b20ac12c">00036</a> <span class="preprocessor">#define _OSS_COMPLETE_MULTIPART_UPLOAD_RESULT_H</span>
+<a name="l00037"></a>00037 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d5/d5a/oss__complete__multipart__upload__result_8h.html">osscpp/modules/oss_complete_multipart_upload_result.h</a>&gt;</span>
+<a name="l00038"></a>00038 <span class="preprocessor">#undef _OSS_COMPLETE_MULTIPART_UPLOAD_RESULT_H</span>
+<a name="l00039"></a>00039 <span class="preprocessor"></span>
+<a name="l00040"></a><a class="code" href="../../d0/df8/oss__client_8h.html#aa0eee74e4dd58f60aa2d55537e98afce">00040</a> <span class="preprocessor">#define _OSS_COPY_OBJECT_REQUEST_H</span>
+<a name="l00041"></a>00041 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d6/dce/oss__copy__object__request_8h.html">osscpp/modules/oss_copy_object_request.h</a>&gt;</span>
+<a name="l00042"></a>00042 <span class="preprocessor">#undef _OSS_COPY_OBJECT_REQUEST_H</span>
+<a name="l00043"></a>00043 <span class="preprocessor"></span>
+<a name="l00044"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a2edc0e7442837871839f23d7f3f6247e">00044</a> <span class="preprocessor">#define _OSS_COPY_OBJECT_RESULT_H</span>
+<a name="l00045"></a>00045 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d1/d1d/oss__copy__object__result_8h.html">osscpp/modules/oss_copy_object_result.h</a>&gt;</span>
+<a name="l00046"></a>00046 <span class="preprocessor">#undef _OSS_COPY_OBJECT_RESULT_H</span>
+<a name="l00047"></a>00047 <span class="preprocessor"></span>
+<a name="l00048"></a><a class="code" href="../../d0/df8/oss__client_8h.html#aea954908af454f521245aabf5d15a9f9">00048</a> <span class="preprocessor">#define _OSS_DELETE_MULTIPLE_OBJECT_REQUEST_H</span>
+<a name="l00049"></a>00049 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d2/d39/oss__delete__multiple__object__request_8h.html">osscpp/modules/oss_delete_multiple_object_request.h</a>&gt;</span>
+<a name="l00050"></a>00050 <span class="preprocessor">#undef _OSS_DELETE_MULTIPLE_OBJECT_REQUEST_H</span>
+<a name="l00051"></a>00051 <span class="preprocessor"></span>
+<a name="l00052"></a><a class="code" href="../../d0/df8/oss__client_8h.html#ad4f07899c80bf66eb0c18ec7d3931a4e">00052</a> <span class="preprocessor">#define _OSS_GENERATE_PRESIGNED_URL_REQUEST_H</span>
+<a name="l00053"></a>00053 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../da/d6e/oss__generate__presigned__url__request_8h.html">osscpp/modules/oss_generate_presigned_url_request.h</a>&gt;</span>
+<a name="l00054"></a>00054 <span class="preprocessor">#undef _OSS_GENERATE_PRESIGNED_URL_REQUEST_H</span>
+<a name="l00055"></a>00055 <span class="preprocessor"></span>
+<a name="l00056"></a><a class="code" href="../../d0/df8/oss__client_8h.html#ace791d0607a5f6d2bd6d18a9606199d5">00056</a> <span class="preprocessor">#define _OSS_GET_OBJECT_GROUP_INDEX_RESULT_H</span>
+<a name="l00057"></a>00057 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d5/d6c/oss__get__object__group__index__result_8h.html">osscpp/modules/oss_get_object_group_index_result.h</a>&gt;</span>
+<a name="l00058"></a>00058 <span class="preprocessor">#undef _OSS_GET_OBJECT_GROUP_INDEX_RESULT_H</span>
+<a name="l00059"></a>00059 <span class="preprocessor"></span>
+<a name="l00060"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a2565ba06c9544532a7e71abcb09fae43">00060</a> <span class="preprocessor">#define _OSS_GET_OBJECT_GROUP_REQUEST_H</span>
+<a name="l00061"></a>00061 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../de/d97/oss__get__object__group__request_8h.html">osscpp/modules/oss_get_object_group_request.h</a>&gt;</span>
+<a name="l00062"></a>00062 <span class="preprocessor">#undef _OSS_GET_OBJECT_GROUP_REQUEST_H</span>
+<a name="l00063"></a>00063 <span class="preprocessor"></span>
+<a name="l00064"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a92ee73158d777bd007d842b661aecd60">00064</a> <span class="preprocessor">#define _OSS_GET_OBJECT_REQUEST_H</span>
+<a name="l00065"></a>00065 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d5/d9e/oss__get__object__request_8h.html">osscpp/modules/oss_get_object_request.h</a>&gt;</span>
+<a name="l00066"></a>00066 <span class="preprocessor">#undef _OSS_GET_OBJECT_REQUEST_H</span>
+<a name="l00067"></a>00067 <span class="preprocessor"></span>
+<a name="l00068"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a7052dde25446aeb686dab8d0df1d7ec0">00068</a> <span class="preprocessor">#define _OSS_INITIATE_MULTIPART_UPLOAD_REQUEST_H</span>
+<a name="l00069"></a>00069 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../db/d9d/oss__initiate__multipart__upload__request_8h.html">osscpp/modules/oss_initiate_multipart_upload_request.h</a>&gt;</span>
+<a name="l00070"></a>00070 <span class="preprocessor">#undef _OSS_INITIATE_MULTIPART_UPLOAD_REQUEST_H</span>
+<a name="l00071"></a>00071 <span class="preprocessor"></span>
+<a name="l00072"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a21c151e20b7e9ee2bc92022009e0c78c">00072</a> <span class="preprocessor">#define _OSS_INITIATE_MULTIPART_UPLOAD_RESULT_H</span>
+<a name="l00073"></a>00073 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d3/dd8/oss__initiate__multipart__upload__result_8h.html">osscpp/modules/oss_initiate_multipart_upload_result.h</a>&gt;</span>
+<a name="l00074"></a>00074 <span class="preprocessor">#undef _OSS_INITIATE_MULTIPART_UPLOAD_RESULT_H</span>
+<a name="l00075"></a>00075 <span class="preprocessor"></span>
+<a name="l00076"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a9011251cbd37c52374e52e57da6c4759">00076</a> <span class="preprocessor">#define _OSS_LIST_MULTIPART_UPLOADS_REQUEST_H</span>
+<a name="l00077"></a>00077 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d9/df4/oss__list__multipart__uploads__request_8h.html">osscpp/modules/oss_list_multipart_uploads_request.h</a>&gt;</span>
+<a name="l00078"></a>00078 <span class="preprocessor">#undef _OSS_LIST_MULTIPART_UPLOADS_REQUEST_H</span>
+<a name="l00079"></a>00079 <span class="preprocessor"></span>
+<a name="l00080"></a><a class="code" href="../../d0/df8/oss__client_8h.html#ac4887ad752fe41910156e4ce37b9bbb3">00080</a> <span class="preprocessor">#define _OSS_LIST_OBJECTS_REQUEST_H</span>
+<a name="l00081"></a>00081 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../df/d74/oss__list__objects__request_8h.html">osscpp/modules/oss_list_objects_request.h</a>&gt;</span>
+<a name="l00082"></a>00082 <span class="preprocessor">#undef _OSS_LIST_OBJECTS_REQUEST_H</span>
+<a name="l00083"></a>00083 <span class="preprocessor"></span>
+<a name="l00084"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a3f1e4074cf15dda9f26c7822fa3d509f">00084</a> <span class="preprocessor">#define _OSS_LIST_PARTS_REQUEST_H</span>
+<a name="l00085"></a>00085 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d5/dd5/oss__list__parts__request_8h.html">osscpp/modules/oss_list_parts_request.h</a>&gt;</span>
+<a name="l00086"></a>00086 <span class="preprocessor">#undef _OSS_LIST_OBJECTS_REQUEST_H</span>
+<a name="l00087"></a>00087 <span class="preprocessor"></span>
+<a name="l00088"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a9d8f01ea6e291a864649c6bdbca48f1c">00088</a> <span class="preprocessor">#define _OSS_MULTIPART_OBJECT_GROUP_H</span>
+<a name="l00089"></a>00089 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d2/d8f/oss__multipart__object__group_8h.html">osscpp/modules/oss_multipart_object_group.h</a>&gt;</span>
+<a name="l00090"></a>00090 <span class="preprocessor">#undef _OSS_MULTIPART_OBJECT_GROUP_H</span>
+<a name="l00091"></a>00091 <span class="preprocessor"></span>
+<a name="l00092"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a5c6af0331168bdb7c93141d17c9b2882">00092</a> <span class="preprocessor">#define _OSS_MULTIPART_UPLOAD_H</span>
+<a name="l00093"></a>00093 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../df/d5c/oss__multipart__upload_8h.html">osscpp/modules/oss_multipart_upload.h</a>&gt;</span>
+<a name="l00094"></a>00094 <span class="preprocessor">#undef _OSS_MULTIPART_UPLOAD_H</span>
+<a name="l00095"></a>00095 <span class="preprocessor"></span>
+<a name="l00096"></a><a class="code" href="../../d0/df8/oss__client_8h.html#aa86d2ddca4d57c106489a76ee88461df">00096</a> <span class="preprocessor">#define _OSS_MULTIPART_UPLOAD_LISTING_H</span>
+<a name="l00097"></a>00097 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d9/d9d/oss__multipart__upload__listing_8h.html">osscpp/modules/oss_multipart_upload_listing.h</a>&gt;</span>
+<a name="l00098"></a>00098 <span class="preprocessor">#undef _OSS_MULTIPART_UPLOAD_LISTING_H</span>
+<a name="l00099"></a>00099 <span class="preprocessor"></span>
+<a name="l00100"></a>00100 <span class="preprocessor">#define _OSS_OBJECT_H</span>
+<a name="l00101"></a>00101 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d4/d24/oss__object_8h.html">osscpp/modules/oss_object.h</a>&gt;</span>
+<a name="l00102"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a28000b977821e0a9bd04f321bffa865a">00102</a> <span class="preprocessor">#define _OSS_OBJECT_H</span>
+<a name="l00103"></a>00103 <span class="preprocessor"></span>
+<a name="l00104"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a695863b76901e30c6d9801dac37302f0">00104</a> <span class="preprocessor">#define _OSS_OBJECT_GROUP_ITEM_H</span>
+<a name="l00105"></a>00105 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d9/d61/oss__object__group__item_8h.html">osscpp/modules/oss_object_group_item.h</a>&gt;</span>
+<a name="l00106"></a>00106 <span class="preprocessor">#undef _OSS_OBJECT_GROUP_ITEM_H</span>
+<a name="l00107"></a>00107 <span class="preprocessor"></span>
+<a name="l00108"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a926ff1ad9c593ece4cf090fa62b3e76e">00108</a> <span class="preprocessor">#define _OSS_OBJECT_LISTING_H</span>
+<a name="l00109"></a>00109 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d1/d7d/oss__object__listing_8h.html">osscpp/modules/oss_object_listing.h</a>&gt;</span>
+<a name="l00110"></a>00110 <span class="preprocessor">#undef _OSS_OBJECT_LISTING_H</span>
+<a name="l00111"></a>00111 <span class="preprocessor"></span>
+<a name="l00112"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a72a0a141e87e531876bcacee82bfa8de">00112</a> <span class="preprocessor">#define _OSS_OBJECT_METADATA_H</span>
+<a name="l00113"></a>00113 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d0/d9c/oss__object__metadata_8h.html">osscpp/modules/oss_object_metadata.h</a>&gt;</span>
+<a name="l00114"></a>00114 <span class="preprocessor">#undef _OSS_OBJECT_METADATA_H</span>
+<a name="l00115"></a>00115 <span class="preprocessor"></span>
+<a name="l00116"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a3ab21828f1741db61fd73baa775f66f2">00116</a> <span class="preprocessor">#define _OSS_OBJECT_SUMMARY_H</span>
+<a name="l00117"></a>00117 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d0/d55/oss__object__summary_8h.html">osscpp/modules/oss_object_summary.h</a>&gt;</span>
+<a name="l00118"></a>00118 <span class="preprocessor">#undef _OSS_OBJECT_SUMMARY_H</span>
+<a name="l00119"></a>00119 <span class="preprocessor"></span>
+<a name="l00120"></a><a class="code" href="../../d0/df8/oss__client_8h.html#ae2922a9975660d3be9317272b04895f3">00120</a> <span class="preprocessor">#define _OSS_OWNER_H</span>
+<a name="l00121"></a>00121 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../da/dd8/oss__owner_8h.html">osscpp/modules/oss_owner.h</a>&gt;</span>
+<a name="l00122"></a>00122 <span class="preprocessor">#undef _OSS_OWNER_H</span>
+<a name="l00123"></a>00123 <span class="preprocessor"></span>
+<a name="l00124"></a><a class="code" href="../../d0/df8/oss__client_8h.html#ab2580b8c78bff3bf12c9fed1126b0418">00124</a> <span class="preprocessor">#define _OSS_PART_ETAG_H</span>
+<a name="l00125"></a>00125 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../db/d37/oss__part__etag_8h.html">osscpp/modules/oss_part_etag.h</a>&gt;</span>
+<a name="l00126"></a>00126 <span class="preprocessor">#undef _OSS_PART_ETAG_H</span>
+<a name="l00127"></a>00127 <span class="preprocessor"></span>
+<a name="l00128"></a><a class="code" href="../../d0/df8/oss__client_8h.html#af2bd778896433dc68c9a2f4744f6c5ba">00128</a> <span class="preprocessor">#define _OSS_PART_LISTING_H</span>
+<a name="l00129"></a>00129 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d0/d70/oss__part__listing_8h.html">osscpp/modules/oss_part_listing.h</a>&gt;</span>
+<a name="l00130"></a>00130 <span class="preprocessor">#undef _OSS_PART_LISTING_H</span>
+<a name="l00131"></a>00131 <span class="preprocessor"></span>
+<a name="l00132"></a><a class="code" href="../../d0/df8/oss__client_8h.html#ac91f7b23e1becd42dc1f38a39f3e89ce">00132</a> <span class="preprocessor">#define _OSS_PART_SUMMARY_H</span>
+<a name="l00133"></a>00133 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d7/dff/oss__part__summary_8h.html">osscpp/modules/oss_part_summary.h</a>&gt;</span>
+<a name="l00134"></a>00134 <span class="preprocessor">#undef _OSS_PART_SUMMARY_H</span>
+<a name="l00135"></a>00135 <span class="preprocessor"></span>
+<a name="l00136"></a><a class="code" href="../../d0/df8/oss__client_8h.html#ae405b06af449b8ee81278598fc554a0e">00136</a> <span class="preprocessor">#define _OSS_POST_OBJECT_GROUP_REQUEST_H</span>
+<a name="l00137"></a>00137 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d5/d27/oss__post__object__group__request_8h.html">osscpp/modules/oss_post_object_group_request.h</a>&gt;</span>
+<a name="l00138"></a>00138 <span class="preprocessor">#undef _OSS_POST_OBJECT_GROUP_REQUEST_H</span>
+<a name="l00139"></a>00139 <span class="preprocessor"></span>
+<a name="l00140"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a3611a528246abccd71f76944e04da954">00140</a> <span class="preprocessor">#define _OSS_POST_OBJECT_GROUP_RESULT_H</span>
+<a name="l00141"></a>00141 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../dc/d36/oss__post__object__group__result_8h.html">osscpp/modules/oss_post_object_group_result.h</a>&gt;</span>
+<a name="l00142"></a>00142 <span class="preprocessor">#undef _OSS_POST_OBJECT_GROUP_RESULT_H</span>
+<a name="l00143"></a>00143 <span class="preprocessor"></span>
+<a name="l00144"></a><a class="code" href="../../d0/df8/oss__client_8h.html#abdd6f05269429a5ccdd93127f8000467">00144</a> <span class="preprocessor">#define _OSS_PUT_OBJECT_RESULT_H</span>
+<a name="l00145"></a>00145 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d5/d45/oss__put__object__result_8h.html">osscpp/modules/oss_put_object_result.h</a>&gt;</span>
+<a name="l00146"></a>00146 <span class="preprocessor">#undef _OSS_PUT_OBJECT_RESULT_H</span>
+<a name="l00147"></a>00147 <span class="preprocessor"></span>
+<a name="l00148"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a4a9f34efd1f78f30e27bca353e893259">00148</a> <span class="preprocessor">#define _OSS_RESPONSE_HEADER_OVERRIDES_H</span>
+<a name="l00149"></a>00149 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d6/dec/oss__response__header__overrides_8h.html">osscpp/modules/oss_response_header_overrides.h</a>&gt;</span>
+<a name="l00150"></a>00150 <span class="preprocessor">#undef _OSS_RESPONSE_HEADER_OVERRIDES_H</span>
+<a name="l00151"></a>00151 <span class="preprocessor"></span>
+<a name="l00152"></a><a class="code" href="../../d0/df8/oss__client_8h.html#acfc68804a552b8279db056f19deb2fb7">00152</a> <span class="preprocessor">#define _OSS_UPLOAD_PART_REQUEST_H</span>
+<a name="l00153"></a>00153 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../db/d71/oss__upload__part__request_8h.html">osscpp/modules/oss_upload_part_request.h</a>&gt;</span>
+<a name="l00154"></a>00154 <span class="preprocessor">#undef _OSS_UPLOAD_PART_REQUEST_H</span>
+<a name="l00155"></a>00155 <span class="preprocessor"></span>
+<a name="l00156"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a2a3e9824a3e7c48fbe62fd8b48249314">00156</a> <span class="preprocessor">#define _OSS_UPLOAD_PART_RESULT_H</span>
+<a name="l00157"></a>00157 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d2/d10/oss__upload__part__result_8h.html">osscpp/modules/oss_upload_part_result.h</a>&gt;</span>
+<a name="l00158"></a>00158 <span class="preprocessor">#undef _OSS_UPLOAD_PART_RESULT_H</span>
+<a name="l00159"></a>00159 <span class="preprocessor"></span>
+<a name="l00160"></a>00160 <span class="preprocessor">#include &lt;<a class="code" href="../../dd/d0c/oss__util_8h.html">osscpp/util/oss_util.h</a>&gt;</span>
+<a name="l00161"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a227c464e753487eff5856e2015ecbf11">00161</a> <span class="preprocessor">#define _OSS_CONSTANTS_H</span>
+<a name="l00162"></a>00162 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d0/ddb/oss__constants_8h.html">osscpp/oss_constants.h</a>&gt;</span>
+<a name="l00163"></a>00163 <span class="preprocessor">#undef _OSS_CONSTANTS_H</span>
+<a name="l00164"></a>00164 <span class="preprocessor"></span>
+<a name="l00165"></a>00165 <span class="preprocessor">#include &lt;string&gt;</span>
+<a name="l00166"></a>00166 
+<a name="l00167"></a>00167 <span class="keyword">using namespace </span>std;
+<a name="l00168"></a>00168 
+<a name="l00169"></a>00169 <span class="keyword">namespace </span>osscpp {
+<a name="l00170"></a>00170 
+<a name="l00180"></a><a class="code" href="../../df/df7/group___client.html#gad94440c5bef278a76b43c58af27ff3a8">00180</a> <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../dc/de0/structosscpp_1_1curl__request__param__s.html" title="http请求与接受的buffer总体结构">curl_request_param_s</a> <a class="code" href="../../dc/de0/structosscpp_1_1curl__request__param__s.html" title="http请求与接受的buffer总体结构">curl_request_param_t</a>;
+<a name="l00181"></a>00181 
+<a name="l00185"></a><a class="code" href="../../d9/d49/structosscpp_1_1param__buffer__s.html">00185</a> <span class="keyword">struct </span><a class="code" href="../../d9/d49/structosscpp_1_1param__buffer__s.html" title="param_buffer_t中buffer的内容">param_buffer_s</a> {
+<a name="l00186"></a><a class="code" href="../../df/df7/group___client.html#ga83ecdb698075b8494918fc70c7466706">00186</a>         <span class="keywordtype">char</span> *<a class="code" href="../../df/df7/group___client.html#ga83ecdb698075b8494918fc70c7466706" title="缓冲区首指针">ptr</a>;             
+<a name="l00187"></a><a class="code" href="../../df/df7/group___client.html#gaf61264f6c256a93b5a8fa9e39b5319a5">00187</a>         FILE *<a class="code" href="../../df/df7/group___client.html#gaf61264f6c256a93b5a8fa9e39b5319a5" title="文件指针">fp</a>;              
+<a name="l00188"></a><a class="code" href="../../df/df7/group___client.html#ga18866e990475a9f7ed0583a1461cb2b2">00188</a>         <span class="keywordtype">size_t</span> <a class="code" href="../../df/df7/group___client.html#ga18866e990475a9f7ed0583a1461cb2b2">left</a>;           
+<a name="l00189"></a><a class="code" href="../../df/df7/group___client.html#ga7b9e93f6166503b0d70bd9d1e2ed59e4">00189</a>         <span class="keywordtype">size_t</span> <a class="code" href="../../df/df7/group___client.html#ga7b9e93f6166503b0d70bd9d1e2ed59e4" title="缓冲区剩余大小">allocated</a>;      
+<a name="l00190"></a><a class="code" href="../../df/df7/group___client.html#gaa4913a03c5210a1e526b0b91077e1f98">00190</a>         <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <a class="code" href="../../df/df7/group___client.html#gaa4913a03c5210a1e526b0b91077e1f98" title="缓冲区总大小">code</a>;   
+<a name="l00191"></a>00191 };
+<a name="l00192"></a>00192 
+<a name="l00197"></a><a class="code" href="../../df/df7/group___client.html#ga77ff7d058e33d37e3bc63b67a6c51a66">00197</a> <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../d9/d49/structosscpp_1_1param__buffer__s.html" title="param_buffer_t中buffer的内容">param_buffer_s</a> <a class="code" href="../../d9/d49/structosscpp_1_1param__buffer__s.html" title="param_buffer_t中buffer的内容">param_buffer_t</a>;
+<a name="l00198"></a>00198 
+<a name="l00202"></a><a class="code" href="../../dc/de0/structosscpp_1_1curl__request__param__s.html">00202</a> <span class="keyword">struct </span><a class="code" href="../../dc/de0/structosscpp_1_1curl__request__param__s.html" title="http请求与接受的buffer总体结构">curl_request_param_s</a> {
+<a name="l00203"></a><a class="code" href="../../df/df7/group___client.html#ga251e13400eb81893b7492354e55b9e53">00203</a>         <a class="code" href="../../d9/d49/structosscpp_1_1param__buffer__s.html" title="param_buffer_t中buffer的内容">param_buffer_t</a> *<a class="code" href="../../df/df7/group___client.html#ga251e13400eb81893b7492354e55b9e53" title="send buffer">send_buffer</a>; 
+<a name="l00204"></a><a class="code" href="../../df/df7/group___client.html#gab44076407dceba7a648f16587560762f">00204</a>         <a class="code" href="../../d9/d49/structosscpp_1_1param__buffer__s.html" title="param_buffer_t中buffer的内容">param_buffer_t</a> *<a class="code" href="../../df/df7/group___client.html#gab44076407dceba7a648f16587560762f" title="receive buffer">recv_buffer</a>; 
+<a name="l00205"></a><a class="code" href="../../df/df7/group___client.html#gaf3c42262f4995b01a19677e7ee08c06e">00205</a>         <a class="code" href="../../d9/d49/structosscpp_1_1param__buffer__s.html" title="param_buffer_t中buffer的内容">param_buffer_t</a> *<a class="code" href="../../df/df7/group___client.html#gaf3c42262f4995b01a19677e7ee08c06e" title="header buffer">header_buffer</a>; 
+<a name="l00206"></a>00206 };
+<a name="l00207"></a>00207 
+<a name="l00216"></a><a class="code" href="../../d2/dde/classosscpp_1_1_client.html">00216</a> <span class="keyword">class </span><a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a> {
+<a name="l00217"></a>00217 
+<a name="l00218"></a>00218         <span class="keyword">private</span> :
+<a name="l00219"></a>00219                 <span class="keywordtype">string</span> endpoint_;       
+<a name="l00220"></a>00220                 <span class="keywordtype">string</span> access_id_;      
+<a name="l00221"></a>00221                 <span class="keywordtype">string</span> access_key_;     
+<a name="l00223"></a>00223                 <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a>(<span class="keyword">const</span> <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a>&amp;);
+<a name="l00224"></a>00224                 <span class="keywordtype">void</span> operator=(<span class="keyword">const</span> <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a>&amp;);
+<a name="l00225"></a>00225 
+<a name="l00226"></a>00226         <span class="keyword">public</span> :
+<a name="l00232"></a><a class="code" href="../../df/df7/group___client.html#ga78f5322c6c1902e14a111c9e77622727">00232</a>                 <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;access_id,
+<a name="l00233"></a>00233                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;access_key)
+<a name="l00234"></a>00234                 {
+<a name="l00235"></a>00235                         access_id_ = access_id;
+<a name="l00236"></a>00236                         access_key_ = access_key; 
+<a name="l00237"></a>00237                 }
+<a name="l00238"></a>00238                 
+<a name="l00245"></a><a class="code" href="../../df/df7/group___client.html#ga5b16e1cf27e44ca26134fbfe87a27de5">00245</a>                 <a class="code" href="../../d2/dde/classosscpp_1_1_client.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">Client</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;access_id,
+<a name="l00246"></a>00246                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;access_key,
+<a name="l00247"></a>00247                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;endpoint)
+<a name="l00248"></a>00248                 {
+<a name="l00249"></a>00249                         access_id_ = access_id;
+<a name="l00250"></a>00250                         access_key_ = access_key;
+<a name="l00251"></a>00251                         endpoint_ = endpoint;
+<a name="l00252"></a>00252                 }
+<a name="l00253"></a>00253                 
+<a name="l00260"></a>00260                 <span class="keywordtype">void</span>
+<a name="l00261"></a>00261                 AbortMultipartUpload(
+<a name="l00262"></a>00262                                 <a class="code" href="../../d9/d8c/classosscpp_1_1_abort_multipart_upload_request.html" title="AbortMultipartUploadRequest 包含终止一个 Multipart 上传事件的请求参数">AbortMultipartUploadRequest</a> &amp;request,
+<a name="l00263"></a>00263                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00264"></a>00264                 
+<a name="l00273"></a>00273                 <a class="code" href="../../d0/da9/classosscpp_1_1_complete_multipart_upload_result.html" title="包含完成一个Multipart上传事件的返回结果">CompleteMultipartUploadResult</a>
+<a name="l00274"></a>00274                 CompleteMultipartUpload(
+<a name="l00275"></a>00275                                 <a class="code" href="../../db/d02/classosscpp_1_1_complete_multipart_upload_request.html" title="包含完成一个Multipart上传事件的请求参数">CompleteMultipartUploadRequest</a> &amp;request,
+<a name="l00276"></a>00276                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00277"></a>00277                 
+<a name="l00286"></a>00286                 <a class="code" href="../../d8/d60/classosscpp_1_1_copy_object_result.html" title="拷贝一个在OSS上已经存在的Object成另外一个Object的请求结果">CopyObjectResult</a> 
+<a name="l00287"></a>00287                 CopyObject(
+<a name="l00288"></a>00288                                 <a class="code" href="../../d5/daa/classosscpp_1_1_copy_object_request.html" title="拷贝一个在OSS上已经存在的Object成另外一个Object的请求参数">CopyObjectRequest</a> &amp;request,
+<a name="l00289"></a>00289                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00290"></a>00290                 
+<a name="l00302"></a>00302                 <a class="code" href="../../d8/d60/classosscpp_1_1_copy_object_result.html" title="拷贝一个在OSS上已经存在的Object成另外一个Object的请求结果">CopyObjectResult</a>
+<a name="l00303"></a>00303                 CopyObject(
+<a name="l00304"></a>00304                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;source_bucket_name,
+<a name="l00305"></a>00305                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;source_key,
+<a name="l00306"></a>00306                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;destination_bucket_name,
+<a name="l00307"></a>00307                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;destination_key,
+<a name="l00308"></a>00308                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00309"></a>00309                 
+<a name="l00316"></a>00316                 <span class="keywordtype">void</span>
+<a name="l00317"></a>00317                 CreateBucket(
+<a name="l00318"></a>00318                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;bucket_name,
+<a name="l00319"></a>00319                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00320"></a>00320                 
+<a name="l00327"></a>00327                 <span class="keywordtype">void</span> 
+<a name="l00328"></a>00328                 DeleteBucket(
+<a name="l00329"></a>00329                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;bucket_name,
+<a name="l00330"></a>00330                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00331"></a>00331                 
+<a name="l00339"></a>00339                 <span class="keywordtype">void</span>
+<a name="l00340"></a>00340                 DeleteObject(
+<a name="l00341"></a>00341                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;bucket_name,
+<a name="l00342"></a>00342                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;key,
+<a name="l00343"></a>00343                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00344"></a>00344                 
+<a name="l00351"></a>00351                 <span class="keywordtype">void</span> 
+<a name="l00352"></a>00352                 DeleteMultipleObject(
+<a name="l00353"></a>00353                                 <a class="code" href="../../de/d7b/classosscpp_1_1_delete_multiple_object_request.html" title="删除指定Bucket的多个Object">DeleteMultipleObjectRequest</a> &amp;request,
+<a name="l00354"></a>00354                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00355"></a>00355                 
+<a name="l00365"></a>00365                 <span class="keyword">const</span> <span class="keywordtype">string</span> 
+<a name="l00366"></a>00366                 GeneratePresignedUrl(
+<a name="l00367"></a>00367                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;bucket_name,
+<a name="l00368"></a>00368                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;key,
+<a name="l00369"></a>00369                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;expiration);
+<a name="l00370"></a>00370                 
+<a name="l00381"></a>00381                 <span class="keyword">const</span> <span class="keywordtype">string</span> 
+<a name="l00382"></a>00382                 GeneratePresignedUrl(
+<a name="l00383"></a>00383                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;bucket_name,
+<a name="l00384"></a>00384                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;key,
+<a name="l00385"></a>00385                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;expiration,
+<a name="l00386"></a>00386                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;method);
+<a name="l00387"></a>00387                 
+<a name="l00396"></a>00396                 <a class="code" href="../../d8/d38/classosscpp_1_1_access_control_list.html" title="表示OSS的访问控制列表（Access Control List, ACL), 包含了一组为指定被授权者(Grantee)分配特定权限(Permission)的集合">AccessControlList</a>
+<a name="l00397"></a>00397                 GetBucketAcl(
+<a name="l00398"></a>00398                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;bucket_name,
+<a name="l00399"></a>00399                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00400"></a>00400                 
+<a name="l00407"></a>00407                 <span class="keyword">inline</span> <span class="keyword">const</span> <span class="keywordtype">string</span> 
+<a name="l00408"></a><a class="code" href="../../df/df7/group___client.html#ga6039fb943b008187e539d3efb993d014">00408</a>                 GetEndpoint()<span class="keyword"> const </span>
+<a name="l00409"></a>00409 <span class="keyword">                </span>{ <span class="keywordflow">return</span> endpoint_; }
+<a name="l00410"></a>00410                 
+<a name="l00419"></a>00419                 <a class="code" href="../../de/d33/classosscpp_1_1_object.html" title="表示OSS中的Object ">Object</a>
+<a name="l00420"></a>00420                 GetObject(
+<a name="l00421"></a>00421                                 <a class="code" href="../../d7/d0a/classosscpp_1_1_get_object_request.html" title="指定从OSS下载Object的请求参数">GetObjectRequest</a> &amp;request,
+<a name="l00422"></a>00422                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00423"></a>00423                 
+<a name="l00434"></a>00434                 ObjectMetadata
+<a name="l00435"></a>00435                 GetObject(
+<a name="l00436"></a>00436                                 <a class="code" href="../../d7/d0a/classosscpp_1_1_get_object_request.html" title="指定从OSS下载Object的请求参数">GetObjectRequest</a> &amp;request,
+<a name="l00437"></a>00437                                 <span class="keywordtype">void</span> **buffer,
+<a name="l00438"></a>00438                                 <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;buffer_len,
+<a name="l00439"></a>00439                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00449"></a>00449                 ObjectMetadata 
+<a name="l00450"></a>00450                 GetObject(
+<a name="l00451"></a>00451                                 <a class="code" href="../../d7/d0a/classosscpp_1_1_get_object_request.html" title="指定从OSS下载Object的请求参数">GetObjectRequest</a> &amp;request,
+<a name="l00452"></a>00452                                 <span class="keywordtype">string</span> &amp;file_name,
+<a name="l00453"></a>00453                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00454"></a>00454                 
+<a name="l00464"></a>00464                 <a class="code" href="../../de/d33/classosscpp_1_1_object.html" title="表示OSS中的Object ">Object</a> 
+<a name="l00465"></a>00465                 GetObject(
+<a name="l00466"></a>00466                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;bucket_name,
+<a name="l00467"></a>00467                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;key,
+<a name="l00468"></a>00468                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00469"></a>00469                 
+<a name="l00479"></a>00479                 ObjectMetadata 
+<a name="l00480"></a>00480                 GetObjectMetadata(
+<a name="l00481"></a>00481                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;bucket_name,
+<a name="l00482"></a>00482                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;key,
+<a name="l00483"></a>00483                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00492"></a>00492                 <a class="code" href="../../d3/db3/structosscpp_1_1_initiate_multipart_upload_result.html" title="包含初始化一个Multipart上传事件的结果参数">InitiateMultipartUploadResult</a> 
+<a name="l00493"></a>00493                 InitiateMultipartUpload(
+<a name="l00494"></a>00494                                 <a class="code" href="../../d8/d0f/classosscpp_1_1_initiate_multipart_upload_request.html" title="包含初始化一个Multipart上传事件的请求参数">InitiateMultipartUploadRequest</a> &amp;request,
+<a name="l00495"></a>00495                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00496"></a>00496                 
+<a name="l00497"></a>00497                 
+<a name="l00505"></a>00505                 <span class="keywordtype">bool</span>
+<a name="l00506"></a>00506                 IsBucketExist(
+<a name="l00507"></a>00507                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;bucket_name);
+<a name="l00508"></a>00508                 
+<a name="l00516"></a>00516                 vector&lt;Bucket&gt;
+<a name="l00517"></a>00517                 ListBuckets(<a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00518"></a>00518                 
+<a name="l00527"></a>00527                 <a class="code" href="../../dc/d2c/classosscpp_1_1_multipart_upload_listing.html" title="包含Multipart上传事件的列表">MultipartUploadListing</a> 
+<a name="l00528"></a>00528                 ListMultipartUploads(
+<a name="l00529"></a>00529                                 <a class="code" href="../../d7/dfb/classosscpp_1_1_list_multipart_uploads_request.html" title="包含列出所有执行中Multipart上传事件的请求参数">ListMultipartUploadsRequest</a> &amp;request,
+<a name="l00530"></a>00530                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00531"></a>00531                 
+<a name="l00540"></a>00540                 <a class="code" href="../../df/dbe/classosscpp_1_1_object_listing.html" title="一个Bucket中所有的Object信息">ObjectListing</a>
+<a name="l00541"></a>00541                 ListObjects(
+<a name="l00542"></a>00542                                 <a class="code" href="../../d7/de9/classosscpp_1_1_list_objects_request.html" title="包含获取object列表的请求信息">ListObjectsRequest</a> &amp;request,
+<a name="l00543"></a>00543                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00544"></a>00544                 
+<a name="l00553"></a>00553                 <a class="code" href="../../df/dbe/classosscpp_1_1_object_listing.html" title="一个Bucket中所有的Object信息">ObjectListing</a>
+<a name="l00554"></a>00554                 ListObjects(
+<a name="l00555"></a>00555                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;bucket_name,
+<a name="l00556"></a>00556                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00557"></a>00557                 
+<a name="l00567"></a>00567                 <a class="code" href="../../df/dbe/classosscpp_1_1_object_listing.html" title="一个Bucket中所有的Object信息">ObjectListing</a>
+<a name="l00568"></a>00568                 ListObjects(
+<a name="l00569"></a>00569                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;bucket_name,
+<a name="l00570"></a>00570                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;prefix,
+<a name="l00571"></a>00571                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00572"></a>00572                 
+<a name="l00581"></a>00581                 <a class="code" href="../../d0/d6d/classosscpp_1_1_part_listing.html" title="包含Multipart上传Part的表示">PartListing</a> 
+<a name="l00582"></a>00582                 ListParts(
+<a name="l00583"></a>00583                                 <a class="code" href="../../db/df4/classosscpp_1_1_list_parts_request.html" title="包含列出Part的请求参数">ListPartsRequest</a> &amp;request,
+<a name="l00584"></a>00584                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00585"></a>00585                 
+<a name="l00597"></a>00597                 <a class="code" href="../../d3/d75/classosscpp_1_1_put_object_result.html" title="上传object操作的返回结果">PutObjectResult</a> 
+<a name="l00598"></a>00598                 PutObjectFromFile(
+<a name="l00599"></a>00599                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;bucket_name,
+<a name="l00600"></a>00600                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;key,
+<a name="l00601"></a>00601                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;file_name,
+<a name="l00602"></a>00602                                 ObjectMetadata &amp;metadata,
+<a name="l00603"></a>00603                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00604"></a>00604                 
+<a name="l00617"></a>00617                 <a class="code" href="../../d3/d75/classosscpp_1_1_put_object_result.html" title="上传object操作的返回结果">PutObjectResult</a> 
+<a name="l00618"></a>00618                 PutObjectFromBuffer(
+<a name="l00619"></a>00619                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;bucket_name,
+<a name="l00620"></a>00620                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;key,
+<a name="l00621"></a>00621                                 <span class="keywordtype">void</span> *buffer,
+<a name="l00622"></a>00622                                 <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> buffer_len,
+<a name="l00623"></a>00623                                 ObjectMetadata &amp;metadata,
+<a name="l00624"></a>00624                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00625"></a>00625                 
+<a name="l00633"></a>00633                 <span class="keywordtype">void</span>
+<a name="l00634"></a>00634                 SetBucketAcl(
+<a name="l00635"></a>00635                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;bucket_name,
+<a name="l00636"></a>00636                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;acl,
+<a name="l00637"></a>00637                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00638"></a>00638                 
+<a name="l00647"></a>00647                 <a class="code" href="../../d1/d50/classosscpp_1_1_upload_part_result.html" title="包含向OSS上传Multipart分块（Part）的结果信息">UploadPartResult</a>
+<a name="l00648"></a>00648                 UploadPart(
+<a name="l00649"></a>00649                                 <a class="code" href="../../d7/da8/classosscpp_1_1_upload_part_request.html" title="包含上传Multipart分块（Part）参数">UploadPartRequest</a> &amp;request,
+<a name="l00650"></a>00650                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00651"></a>00651                 
+<a name="l00662"></a>00662                 <a class="code" href="../../dd/d47/classosscpp_1_1_post_object_group_result.html" title="创建对象组（Object Group）返回的结果">PostObjectGroupResult</a> 
+<a name="l00663"></a>00663                 PostObjectGroup(
+<a name="l00664"></a>00664                                 <a class="code" href="../../d3/dcb/classosscpp_1_1_post_object_group_request.html" title="Object Group 是由一个或多个 Object 组成的松散的集合,它的数据长度是其 所属 Object 的数据长度的总和。用户可以指定在同一个 Bucket 下的一个或多个Object...">PostObjectGroupRequest</a> &amp;request,
+<a name="l00665"></a>00665                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00666"></a>00666                 
+<a name="l00676"></a>00676                 ObjectMetadata 
+<a name="l00677"></a>00677                 GetObjectGroupToFile(
+<a name="l00678"></a>00678                                 <a class="code" href="../../df/d39/classosscpp_1_1_get_object_group_request.html" title="指定从OSS下载Object group的请求参数">GetObjectGroupRequest</a> &amp;request,
+<a name="l00679"></a>00679                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;file_name,
+<a name="l00680"></a>00680                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00681"></a>00681                 
+<a name="l00691"></a>00691                 ObjectMetadata 
+<a name="l00692"></a>00692                 GetObjectGroupToBuffer(
+<a name="l00693"></a>00693                                 <a class="code" href="../../df/d39/classosscpp_1_1_get_object_group_request.html" title="指定从OSS下载Object group的请求参数">GetObjectGroupRequest</a> &amp;request,
+<a name="l00694"></a>00694                                 <span class="keywordtype">string</span> &amp;output,
+<a name="l00695"></a>00695                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00696"></a>00696                 
+<a name="l00706"></a>00706                 <a class="code" href="../../d5/da2/classosscpp_1_1_get_object_group_index_result.html" title="用于返回 Object Group 中的 Object vector 信息">GetObjectGroupIndexResult</a>
+<a name="l00707"></a>00707                 GetObjectGroupIndex(
+<a name="l00708"></a>00708                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;bucket_name,
+<a name="l00709"></a>00709                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;key,
+<a name="l00710"></a>00710                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00711"></a>00711                 
+<a name="l00720"></a>00720                 ObjectMetadata 
+<a name="l00721"></a>00721                 HeadObjectGroup(
+<a name="l00722"></a>00722                                 <a class="code" href="../../df/d39/classosscpp_1_1_get_object_group_request.html" title="指定从OSS下载Object group的请求参数">GetObjectGroupRequest</a> &amp;request,
+<a name="l00723"></a>00723                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00724"></a>00724                 
+<a name="l00732"></a>00732                 <span class="keywordtype">void</span> 
+<a name="l00733"></a>00733                 DeleteObjectGroup(
+<a name="l00734"></a>00734                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;bucket_name,
+<a name="l00735"></a>00735                                 <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;key,
+<a name="l00736"></a>00736                                 <a class="code" href="../../d0/ddb/oss__constants_8h.html#a1da45a80c360f331826cbb02d7ff961d">OSS_ERROR_CODE</a> &amp;retcode);
+<a name="l00737"></a>00737                 
+<a name="l00738"></a>00738                 
+<a name="l00739"></a>00739 };
+<a name="l00740"></a>00740 }
+<a name="l00741"></a>00741 
+<a name="l00742"></a>00742 
+<a name="l00743"></a>00743 
+<a name="l00746"></a>00746 <span class="preprocessor">#endif // OSS_CLIENT_H</span>
+</pre></div></div><!-- contents -->
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>命名空间</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>枚举</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>枚举值</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>宏定义</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="../../d0/df8/oss__client_8h.html">oss_client.h</a>      </li>
+
+    <li class="footer">Generated at 2012年十一月2日 星期五 17:55:27 for OSSCPP by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>

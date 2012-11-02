@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['generateauthentication',['GenerateAuthentication',['../d0/d2e/classosscpp_1_1_util.html#ab585747eb5c1991e46e67ba343568a02',1,'osscpp::Util']]],
+  ['generatepresignedurl',['GeneratePresignedUrl',['../df/df7/group___client.html#ga68e3b38a4459cf5abd0a5c071e75888e',1,'osscpp::Client::GeneratePresignedUrl(const string &amp;bucket_name, const string &amp;key, const string &amp;expiration)'],['../df/df7/group___client.html#ga52083cb6529f26fc0417d404e81ab509',1,'osscpp::Client::GeneratePresignedUrl(const string &amp;bucket_name, const string &amp;key, const string &amp;expiration, const string &amp;method)']]],
+  ['generatepresignedurlrequest',['GeneratePresignedUrlRequest',['../d7/de5/group___generate_presigned_url_request.html#gac5c1f70d0bbdec18c70ae39b358842a8',1,'osscpp::GeneratePresignedUrlRequest::GeneratePresignedUrlRequest(const string &amp;bucket_name, const string &amp;key)'],['../d7/de5/group___generate_presigned_url_request.html#ga77ce5fdb93d3912fdd71445ce4785f35',1,'osscpp::GeneratePresignedUrlRequest::GeneratePresignedUrlRequest(const string &amp;bucket_name, const string &amp;key, const string &amp;method)']]],
+  ['get_5fkey',['get_key',['../dd/d6f/group___part_listing.html#gaa7923d9174472442bfb418f6291c166a',1,'osscpp::PartListing']]],
+  ['get_5fuser_5fmetadata',['get_user_metadata',['../d7/de5/group___generate_presigned_url_request.html#gad64030877022af80450119863b4ea677',1,'osscpp::GeneratePresignedUrlRequest']]],
+  ['getasctime',['GetAscTime',['../d0/d2e/classosscpp_1_1_util.html#a77f4303693f78a196f4f2555098f4488',1,'osscpp::Util']]],
+  ['getbucketacl',['GetBucketAcl',['../df/df7/group___client.html#gad8f60f9833c332f3e65bcd77cd5c041d',1,'osscpp::Client']]],
+  ['getendpoint',['GetEndpoint',['../df/df7/group___client.html#ga6039fb943b008187e539d3efb993d014',1,'osscpp::Client']]],
+  ['getfilesize',['GetFileSize',['../d0/d2e/classosscpp_1_1_util.html#a9ea204243ff431166e38cf036fc0155d',1,'osscpp::Util']]],
+  ['getgmttime',['GetGmtTime',['../d0/d2e/classosscpp_1_1_util.html#a70f04690980a34d5a37cd931248ca305',1,'osscpp::Util']]],
+  ['getmessagefromretcode',['GetMessageFromRetcode',['../d0/d2e/classosscpp_1_1_util.html#a0cb01401e5e458ffcccb8a6ad51f4e43',1,'osscpp::Util']]],
+  ['getobject',['GetObject',['../df/df7/group___client.html#ga63bd698d01457dfa2e631f36af7d60a0',1,'osscpp::Client::GetObject(GetObjectRequest &amp;request, OSS_ERROR_CODE &amp;retcode)'],['../df/df7/group___client.html#ga6b27f0c53cc3e43026c2fe8abe50a565',1,'osscpp::Client::GetObject(GetObjectRequest &amp;request, void **buffer, unsigned int &amp;buffer_len, OSS_ERROR_CODE &amp;retcode)'],['../df/df7/group___client.html#ga8c76b49fe9ca83d87d2899f3a43fbc25',1,'osscpp::Client::GetObject(GetObjectRequest &amp;request, string &amp;file_name, OSS_ERROR_CODE &amp;retcode)'],['../df/df7/group___client.html#gad6d1d1e889d84db912b438802d4f2441',1,'osscpp::Client::GetObject(const string &amp;bucket_name, const string &amp;key, OSS_ERROR_CODE &amp;retcode)']]],
+  ['getobjectgroupindex',['GetObjectGroupIndex',['../df/df7/group___client.html#gad424df9e51a38b3c8c9b64f3df400f9e',1,'osscpp::Client']]],
+  ['getobjectgroupindexresult',['GetObjectGroupIndexResult',['../da/d1c/group___get_object_group_index_result.html#ga972020c9986de9583755fc111f874972',1,'osscpp::GetObjectGroupIndexResult']]],
+  ['getobjectgrouprequest',['GetObjectGroupRequest',['../da/dd1/group___get_object_group_request.html#gae8761ac4996042df259c7fc839a4d537',1,'osscpp::GetObjectGroupRequest']]],
+  ['getobjectgrouptobuffer',['GetObjectGroupToBuffer',['../df/df7/group___client.html#gaaad8aeba537dcd7560f53835a7acc0b4',1,'osscpp::Client']]],
+  ['getobjectgrouptofile',['GetObjectGroupToFile',['../df/df7/group___client.html#gac6006921c6e29bb68c9dd01b072fba78',1,'osscpp::Client']]],
+  ['getobjectmetadata',['GetObjectMetadata',['../df/df7/group___client.html#gabff70d4f799bbd42cd8513ee756b06ef',1,'osscpp::Client']]],
+  ['getobjectrequest',['GetObjectRequest',['../d2/db3/group___get_object_request.html#ga224e8c8c74485efbf1e864d355e6192b',1,'osscpp::GetObjectRequest']]],
+  ['getretcodefromresponse',['GetRetcodeFromResponse',['../d0/d2e/classosscpp_1_1_util.html#a2b6d7e9b70e4740562534b594724c7a0',1,'osscpp::Util']]],
+  ['grant',['grant',['../d6/dca/group___access_control_list.html#ga6ec0ae336d0f7e4bbfc3e3667d5b42ff',1,'osscpp::AccessControlList']]],
+  ['group',['group',['../da/d1c/group___get_object_group_index_result.html#ga0d1d868d5cdf5addaed61ec4106f5693',1,'osscpp::GetObjectGroupIndexResult']]]
+];

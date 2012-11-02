@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>OSSCPP: oss_part_listing.h源文件</title>
+
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">OSSCPP
+   &#160;<span id="projectnumber">0.1.0</span>
+   </div>
+   <div id="projectbrief">Aliyun Open Storage Service C++ SDK</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- 制作者 Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>首页</span></a></li>
+      <li><a href="../../modules.html"><span>模块</span></a></li>
+      <li><a href="../../namespaces.html"><span>命名空间</span></a></li>
+      <li><a href="../../annotated.html"><span>类</span></a></li>
+      <li class="current"><a href="../../files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>文件列表</span></a></li>
+      <li><a href="../../globals.html"><span>文件成员</span></a></li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('d0/d70/oss__part__listing_8h.html','../../');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">oss_part_listing.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d0/d70/oss__part__listing_8h.html">浏览该文件的文档。</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<a name="l00002"></a>00002 <span class="comment"> * =============================================================================</span>
+<a name="l00003"></a>00003 <span class="comment"> *</span>
+<a name="l00004"></a>00004 <span class="comment"> *       Filename:  oss_part_listing.h</span>
+<a name="l00005"></a>00005 <span class="comment"> *</span>
+<a name="l00006"></a>00006 <span class="comment"> *    Description:  oss_part_listing.</span>
+<a name="l00007"></a>00007 <span class="comment"> *</span>
+<a name="l00008"></a>00008 <span class="comment"> *        Company:  ICT ( Institute Of Computing Technology, CAS )</span>
+<a name="l00009"></a>00009 <span class="comment"> *</span>
+<a name="l00010"></a>00010 <span class="comment"> *</span>
+<a name="l00011"></a>00011 <span class="comment"> * =============================================================================</span>
+<a name="l00012"></a>00012 <span class="comment"> */</span>
+<a name="l00013"></a>00013 <span class="preprocessor">#ifndef _OSS_PART_LISTING_H</span>
+<a name="l00014"></a>00014 <span class="preprocessor"></span><span class="preprocessor"># error Never include &lt;ossc/modules/oss_part_listing.h&gt; directly, use &lt;ossc/client.h&gt; instead.</span>
+<a name="l00015"></a>00015 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00016"></a>00016 <span class="preprocessor"></span>
+<a name="l00017"></a>00017 <span class="preprocessor">#ifndef OSS_PART_LISTING_H</span>
+<a name="l00018"></a>00018 <span class="preprocessor"></span><span class="preprocessor">#define OSS_PART_LISTING_H</span>
+<a name="l00019"></a>00019 <span class="preprocessor"></span>
+<a name="l00020"></a><a class="code" href="../../d0/d70/oss__part__listing_8h.html#ae2922a9975660d3be9317272b04895f3">00020</a> <span class="preprocessor">#define _OSS_OWNER_H</span>
+<a name="l00021"></a>00021 <span class="preprocessor"></span><span class="preprocessor">#include  &quot;<a class="code" href="../../da/dd8/oss__owner_8h.html">oss_owner.h</a>&quot;</span>
+<a name="l00022"></a>00022 <span class="preprocessor">#undef _OSS_OWNER_H</span>
+<a name="l00023"></a>00023 <span class="preprocessor"></span>
+<a name="l00024"></a><a class="code" href="../../d0/d70/oss__part__listing_8h.html#ac91f7b23e1becd42dc1f38a39f3e89ce">00024</a> <span class="preprocessor">#define _OSS_PART_SUMMARY_H</span>
+<a name="l00025"></a>00025 <span class="preprocessor"></span><span class="preprocessor">#include &quot;<a class="code" href="../../d7/dff/oss__part__summary_8h.html">oss_part_summary.h</a>&quot;</span>
+<a name="l00026"></a>00026 <span class="preprocessor">#undef _OSS_PART_SUMMARY_H</span>
+<a name="l00027"></a>00027 <span class="preprocessor"></span>
+<a name="l00028"></a>00028 <span class="preprocessor">#include &lt;string&gt;</span>
+<a name="l00029"></a>00029 <span class="preprocessor">#include &lt;vector&gt;</span>
+<a name="l00030"></a>00030 <span class="keyword">using namespace </span>std;
+<a name="l00031"></a>00031 
+<a name="l00032"></a>00032 <span class="keyword">namespace </span>osscpp {
+<a name="l00033"></a>00033 
+<a name="l00042"></a><a class="code" href="../../d0/d6d/classosscpp_1_1_part_listing.html">00042</a> <span class="keyword">class </span><a class="code" href="../../d0/d6d/classosscpp_1_1_part_listing.html" title="包含Multipart上传Part的表示">PartListing</a> {
+<a name="l00043"></a>00043 
+<a name="l00044"></a>00044         <span class="keyword">private</span> :
+<a name="l00045"></a>00045                 <span class="keywordtype">string</span> bucket_name_;                  
+<a name="l00046"></a>00046                 Owner initiator_;             
+<a name="l00047"></a>00047                 <span class="keywordtype">bool</span> is_truncated_;                  
+<a name="l00048"></a>00048                 <span class="keywordtype">string</span> key_;                          
+<a name="l00049"></a>00049                 <span class="keywordtype">int</span> max_parts_;                      
+<a name="l00050"></a>00050                 <span class="keywordtype">int</span> next_part_number_marker_;        
+<a name="l00051"></a>00051                 Owner owner_;                 
+<a name="l00052"></a>00052                 <span class="keywordtype">int</span> part_number_marker_;             
+<a name="l00053"></a>00053                 vector&lt;PartSummary&gt; parts_;         
+<a name="l00054"></a>00054                 <span class="keywordtype">string</span> storage_class_;                
+<a name="l00055"></a>00055                 <span class="keywordtype">string</span> upload_id_;                    
+<a name="l00057"></a>00057                 <span class="comment">//PartListing(const PartListing&amp;);</span>
+<a name="l00058"></a>00058                 <span class="comment">//void operator=(const PartListing&amp;);</span>
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060         <span class="keyword">public</span> :
+<a name="l00064"></a><a class="code" href="../../dd/d6f/group___part_listing.html#ga84605a71054ba82e1f11d9d1ff8765e8">00064</a>                 <a class="code" href="../../d0/d6d/classosscpp_1_1_part_listing.html" title="包含Multipart上传Part的表示">PartListing</a>(<span class="keywordtype">void</span>)
+<a name="l00065"></a>00065                 {
+<a name="l00066"></a>00066                         initiator_ = Owner();
+<a name="l00067"></a>00067                         owner_ = Owner();
+<a name="l00068"></a>00068                         is_truncated_ = <span class="keyword">false</span>;
+<a name="l00069"></a>00069                         max_parts_ = 0;
+<a name="l00070"></a>00070                         next_part_number_marker_ = 0;
+<a name="l00071"></a>00071                         part_number_marker_ = 0;
+<a name="l00072"></a>00072                 }
+<a name="l00073"></a>00073 
+<a name="l00079"></a><a class="code" href="../../dd/d6f/group___part_listing.html#gadb09a0e70adf6558d9456699a5664e36">00079</a>                 <span class="keyword">inline</span> <span class="keyword">const</span> <span class="keywordtype">string</span> bucket_name()<span class="keyword"> const</span>
+<a name="l00080"></a>00080 <span class="keyword">                </span>{ <span class="keywordflow">return</span> bucket_name_; }
+<a name="l00081"></a>00081 
+<a name="l00087"></a><a class="code" href="../../dd/d6f/group___part_listing.html#ga0d3329aa53681861db005b89310772d5">00087</a>                 <span class="keyword">inline</span> <span class="keywordtype">void</span> set_bucket_name(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;bucket_name)
+<a name="l00088"></a>00088                 { bucket_name_ = bucket_name; }
+<a name="l00089"></a>00089 
+<a name="l00095"></a><a class="code" href="../../dd/d6f/group___part_listing.html#gaa7923d9174472442bfb418f6291c166a">00095</a>                 <span class="keyword">inline</span> <span class="keyword">const</span> <span class="keywordtype">string</span> get_key()<span class="keyword"> const </span>
+<a name="l00096"></a>00096 <span class="keyword">                </span>{ <span class="keywordflow">return</span> key_; }
+<a name="l00097"></a>00097 
+<a name="l00103"></a><a class="code" href="../../dd/d6f/group___part_listing.html#gaa78bd20f9f4c10186b9f9e1d87bd9732">00103</a>                 <span class="keyword">inline</span> <span class="keywordtype">void</span> set_key(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;key)
+<a name="l00104"></a>00104                 { key_ = key; }
+<a name="l00105"></a>00105 
+<a name="l00111"></a><a class="code" href="../../dd/d6f/group___part_listing.html#ga87de340b811ee64c5da520561f72cc10">00111</a>                 <span class="keyword">inline</span> <span class="keyword">const</span> <span class="keywordtype">string</span> upload_id()<span class="keyword"> const </span>
+<a name="l00112"></a>00112 <span class="keyword">                </span>{ <span class="keywordflow">return</span> upload_id_; }
+<a name="l00113"></a>00113 
+<a name="l00119"></a><a class="code" href="../../dd/d6f/group___part_listing.html#ga77621b344ccb0f78e08c1bb4252b6114">00119</a>                 <span class="keyword">inline</span> <span class="keywordtype">void</span> set_upload_id(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;upload_id)
+<a name="l00120"></a>00120                 { upload_id_ = upload_id; }
+<a name="l00121"></a>00121 
+<a name="l00127"></a><a class="code" href="../../dd/d6f/group___part_listing.html#ga10946f950c1050093392ffc865e6bf68">00127</a>                 <span class="keyword">inline</span> <span class="keyword">const</span> <span class="keywordtype">string</span> storage_class()<span class="keyword"> const </span>
+<a name="l00128"></a>00128 <span class="keyword">                </span>{ <span class="keywordflow">return</span> storage_class_; } 
+<a name="l00129"></a>00129 
+<a name="l00135"></a><a class="code" href="../../dd/d6f/group___part_listing.html#ga2fe2f1d1b19d187978c5d217a70fe5ff">00135</a>                 <span class="keyword">inline</span> <span class="keywordtype">void</span> set_storage_class(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;storage_class)
+<a name="l00136"></a>00136                 { storage_class_ = storage_class; }
+<a name="l00137"></a>00137 
+<a name="l00144"></a><a class="code" href="../../dd/d6f/group___part_listing.html#ga95f2460f4f1b6fca6491ef100e69b97f">00144</a>                 <span class="keyword">inline</span> Owner initiator()<span class="keyword"> const </span>
+<a name="l00145"></a>00145 <span class="keyword">                </span>{ <span class="keywordflow">return</span> initiator_; }
+<a name="l00146"></a>00146 
+<a name="l00152"></a><a class="code" href="../../dd/d6f/group___part_listing.html#gaf82b2557bff117143514191315e566f7">00152</a>                 <span class="keyword">inline</span> <span class="keywordtype">void</span> set_initiator(Owner &amp;initiator)
+<a name="l00153"></a>00153                 { initiator_ = initiator; }
+<a name="l00154"></a>00154 
+<a name="l00160"></a><a class="code" href="../../dd/d6f/group___part_listing.html#gab64c0d702e6f0a9def78fdc4ae9f518b">00160</a>                 <span class="keyword">inline</span> <span class="keywordtype">int</span> max_parts()<span class="keyword"> const </span>
+<a name="l00161"></a>00161 <span class="keyword">                </span>{ <span class="keywordflow">return</span> max_parts_; }
+<a name="l00162"></a>00162 
+<a name="l00168"></a><a class="code" href="../../dd/d6f/group___part_listing.html#ga1c9bd09db963c382828b201b394fba72">00168</a>                 <span class="keyword">inline</span> <span class="keywordtype">void</span> set_max_parts(<span class="keywordtype">int</span> max_parts) 
+<a name="l00169"></a>00169                 { max_parts_ = max_parts; }
+<a name="l00170"></a>00170 
+<a name="l00176"></a><a class="code" href="../../dd/d6f/group___part_listing.html#gad2c11a331abf0dc9bd76517a84d8dabe">00176</a>                 <span class="keyword">inline</span> <span class="keywordtype">bool</span> is_truncated()<span class="keyword"> const </span>
+<a name="l00177"></a>00177 <span class="keyword">                </span>{ <span class="keywordflow">return</span> is_truncated_; }
+<a name="l00178"></a>00178 
+<a name="l00184"></a><a class="code" href="../../dd/d6f/group___part_listing.html#ga1af4b0febeddfbbb66ac9f77a2ae91d5">00184</a>                 <span class="keyword">inline</span> <span class="keywordtype">void</span> set_is_truncated(<span class="keywordtype">bool</span> is_truncated)
+<a name="l00185"></a>00185                 { is_truncated_ = is_truncated; }
+<a name="l00186"></a>00186 
+<a name="l00193"></a><a class="code" href="../../dd/d6f/group___part_listing.html#ga6b7448a977ac95de238341846c01fda0">00193</a>                 <span class="keyword">inline</span> vector&lt;PartSummary&gt; parts()<span class="keyword"> const</span>
+<a name="l00194"></a>00194 <span class="keyword">                </span>{ <span class="keywordflow">return</span> parts_; }
+<a name="l00195"></a>00195 
+<a name="l00201"></a><a class="code" href="../../dd/d6f/group___part_listing.html#gaccdab96ae4c6d5e4e72172401e178246">00201</a>                 <span class="keyword">inline</span> <span class="keywordtype">void</span> set_parts(vector&lt;PartSummary&gt; &amp;parts)
+<a name="l00202"></a>00202                 { parts_ =parts; }
+<a name="l00203"></a>00203 
+<a name="l00209"></a><a class="code" href="../../dd/d6f/group___part_listing.html#gab7c02e462af6c5d1812fab39593663ad">00209</a>                 <span class="keyword">inline</span> <span class="keywordtype">int</span> next_part_number_marker()<span class="keyword"> const </span>
+<a name="l00210"></a>00210 <span class="keyword">                </span>{ <span class="keywordflow">return</span> next_part_number_marker_; }
+<a name="l00211"></a>00211 
+<a name="l00217"></a><a class="code" href="../../dd/d6f/group___part_listing.html#gaa5547f1fc22a501c99b370827c7e6292">00217</a>                 <span class="keyword">inline</span> <span class="keywordtype">void</span> set_next_part_number_marker(<span class="keywordtype">int</span> next_part_number_marker)
+<a name="l00218"></a>00218                 { next_part_number_marker_ = next_part_number_marker; }
+<a name="l00219"></a>00219 
+<a name="l00225"></a><a class="code" href="../../dd/d6f/group___part_listing.html#gac6d62dbff80da83bd46ce71e690d24ae">00225</a>                 <span class="keyword">inline</span> Owner owner()<span class="keyword"> const </span>
+<a name="l00226"></a>00226 <span class="keyword">                </span>{ <span class="keywordflow">return</span> owner_; }
+<a name="l00227"></a>00227 
+<a name="l00233"></a><a class="code" href="../../dd/d6f/group___part_listing.html#gab75ac5dcf4e23282fed63be8362e0fcf">00233</a>                 <span class="keyword">inline</span> <span class="keywordtype">void</span> set_owner(Owner &amp;owner)
+<a name="l00234"></a>00234                 { owner_ = owner; }
+<a name="l00235"></a>00235                 
+<a name="l00241"></a><a class="code" href="../../dd/d6f/group___part_listing.html#ga1f261036cf857a7c67d238aa19b39fe7">00241</a>                 <span class="keyword">inline</span> <span class="keywordtype">int</span> part_number_marker()<span class="keyword"> const </span>
+<a name="l00242"></a>00242 <span class="keyword">                </span>{ <span class="keywordflow">return</span> part_number_marker_; }
+<a name="l00243"></a>00243 
+<a name="l00249"></a><a class="code" href="../../dd/d6f/group___part_listing.html#ga91a21e2cda7ea816aaefece2b8c836ce">00249</a>                 <span class="keyword">inline</span> <span class="keywordtype">void</span> set_part_number_marker(<span class="keywordtype">int</span> part_number_marker)
+<a name="l00250"></a>00250                 { part_number_marker_ = part_number_marker; }
+<a name="l00251"></a>00251 
+<a name="l00252"></a>00252 
+<a name="l00253"></a>00253 
+<a name="l00254"></a>00254 };
+<a name="l00255"></a>00255 }
+<a name="l00257"></a>00257 <span class="preprocessor">#endif</span>
+</pre></div></div><!-- contents -->
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>命名空间</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>枚举</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>枚举值</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>宏定义</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="../../d0/d70/oss__part__listing_8h.html">oss_part_listing.h</a>      </li>
+
+    <li class="footer">Generated at 2012年十一月2日 星期五 17:55:27 for OSSCPP by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>
